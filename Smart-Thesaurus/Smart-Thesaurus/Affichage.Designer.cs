@@ -52,6 +52,7 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.lblResult = new MaterialSkin.Controls.MaterialLabel();
             this.materialContextMenuStrip1.SuspendLayout();
             this.materialTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -159,6 +160,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.lblResult);
             this.tabPage1.Controls.Add(this.materialFlatButton1);
             this.tabPage1.Controls.Add(this.materialRaisedButton1);
             this.tabPage1.Controls.Add(this.txtField);
@@ -285,6 +287,19 @@
             this.tabPage3.Text = "Educanet2";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // lblResult
+            // 
+            this.lblResult.AutoSize = true;
+            this.lblResult.Depth = 0;
+            this.lblResult.Font = new System.Drawing.Font("Roboto", 11F);
+            this.lblResult.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblResult.Location = new System.Drawing.Point(310, 7);
+            this.lblResult.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lblResult.Name = "lblResult";
+            this.lblResult.Size = new System.Drawing.Size(108, 19);
+            this.lblResult.TabIndex = 10;
+            this.lblResult.Text = "materialLabel1";
+            // 
             // Affichage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -329,6 +344,7 @@
         private MaterialSkin.Controls.MaterialSingleLineTextField txtField;
         private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButton1;
         private MaterialSkin.Controls.MaterialFlatButton materialFlatButton1;
+        private MaterialSkin.Controls.MaterialLabel lblResult;
     }
 }
 
