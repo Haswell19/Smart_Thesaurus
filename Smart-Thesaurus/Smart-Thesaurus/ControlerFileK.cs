@@ -141,7 +141,7 @@ namespace Smart_Thesaurus
             try
             {
                 //recupérer le fichier
-                string file = lstFiles[index];
+                string file = _lstView.Items[index].SubItems[1].Text+"\\"+ _lstView.Items[index].SubItems[2].Text+"."+ _lstView.Items[index].SubItems[3].Text;
                 //ouvrir le fichier
                 ProcessStartInfo psi = new ProcessStartInfo(file);
                 Process.Start(psi);

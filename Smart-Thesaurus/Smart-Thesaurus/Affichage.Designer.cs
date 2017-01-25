@@ -42,7 +42,6 @@
             this.materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
             this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.lblResult = new MaterialSkin.Controls.MaterialLabel();
             this.materialFlatButton1 = new MaterialSkin.Controls.MaterialFlatButton();
             this.btnKIndex = new MaterialSkin.Controls.MaterialRaisedButton();
             this.txtField = new MaterialSkin.Controls.MaterialSingleLineTextField();
@@ -160,7 +159,6 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.lblResult);
             this.tabPage1.Controls.Add(this.materialFlatButton1);
             this.tabPage1.Controls.Add(this.btnKIndex);
             this.tabPage1.Controls.Add(this.txtField);
@@ -171,19 +169,6 @@
             this.tabPage1.Size = new System.Drawing.Size(764, 432);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "K:\\";
-            // 
-            // lblResult
-            // 
-            this.lblResult.AutoSize = true;
-            this.lblResult.Depth = 0;
-            this.lblResult.Font = new System.Drawing.Font("Roboto", 11F);
-            this.lblResult.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblResult.Location = new System.Drawing.Point(648, 6);
-            this.lblResult.MouseState = MaterialSkin.MouseState.HOVER;
-            this.lblResult.Name = "lblResult";
-            this.lblResult.Size = new System.Drawing.Size(108, 19);
-            this.lblResult.TabIndex = 10;
-            this.lblResult.Text = "materialLabel1";
             // 
             // materialFlatButton1
             // 
@@ -285,7 +270,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(481, 432);
+            this.tabPage2.Size = new System.Drawing.Size(764, 432);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Site Web ETML";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -295,7 +280,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(481, 432);
+            this.tabPage3.Size = new System.Drawing.Size(764, 432);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Educanet2";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -344,7 +329,6 @@
         private MaterialSkin.Controls.MaterialSingleLineTextField txtField;
         private MaterialSkin.Controls.MaterialRaisedButton btnKIndex;
         private MaterialSkin.Controls.MaterialFlatButton materialFlatButton1;
-        private MaterialSkin.Controls.MaterialLabel lblResult;
     }
 }
 
