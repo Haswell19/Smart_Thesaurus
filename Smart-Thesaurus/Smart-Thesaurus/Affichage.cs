@@ -12,6 +12,7 @@ namespace Smart_Thesaurus
         public Affichage()
         {
             InitializeComponent();
+            //Créaton de la form material design
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
@@ -19,12 +20,13 @@ namespace Smart_Thesaurus
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnKIndex_Click(object sender, EventArgs e)
         {
-            ct = new ControlerFileK(lstViewK);            
+            ct.getInstance();
+           ct.indexationFiles(path,lstViewK);            
         }
 
-        private void dataGV_CellContentClick(object sender, MouseEventArgs e)
+        private void lstView_DoubleClickCell(object sender, MouseEventArgs e)
         {
             for (int i = 0; i < lstViewK.Items.Count; i++)
             {
@@ -39,11 +41,7 @@ namespace Smart_Thesaurus
         {
             if (ct == null)
             {
-                ct = new ControlerFileK(lstViewK);
-            }
-            else
-            {
-                ct.FileSearch(path);
+                ct.getInstance();
             }
             ct.SearchWord(txtField.Text, lstViewK);
         }

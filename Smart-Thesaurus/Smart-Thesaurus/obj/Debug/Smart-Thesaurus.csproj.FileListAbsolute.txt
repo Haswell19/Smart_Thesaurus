@@ -27,3 +27,13 @@ F:\Cours\Applications-Projets\P_OO\Smart-Thesaurus\Smart-Thesaurus\obj\Debug\Sma
 F:\Cours\Applications-Projets\P_OO\Smart-Thesaurus\Smart-Thesaurus\obj\Debug\Smart_Thesaurus.Affichage.resources
 F:\Cours\Applications-Projets\P_OO\Smart-Thesaurus\Smart-Thesaurus\obj\Debug\Smart_Thesaurus.Properties.Resources.resources
 F:\Cours\Applications-Projets\P_OO\Smart-Thesaurus\Smart-Thesaurus\obj\Debug\Smart-Thesaurus.csproj.GenerateResource.Cache
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus\Smart-Thesaurus\bin\Debug\Smart-Thesaurus.exe.config
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus\Smart-Thesaurus\obj\Debug\Smart-Thesaurus.exe
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus\Smart-Thesaurus\obj\Debug\Smart-Thesaurus.pdb
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus\Smart-Thesaurus\bin\Debug\Smart-Thesaurus.exe
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus\Smart-Thesaurus\bin\Debug\Smart-Thesaurus.pdb
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus\Smart-Thesaurus\bin\Debug\MaterialSkin.dll
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus\Smart-Thesaurus\obj\Debug\Smart-Thesaurus.csprojResolveAssemblyReference.cache
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus\Smart-Thesaurus\obj\Debug\Smart_Thesaurus.Affichage.resources
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus\Smart-Thesaurus\obj\Debug\Smart_Thesaurus.Properties.Resources.resources
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus\Smart-Thesaurus\obj\Debug\Smart-Thesaurus.csproj.GenerateResource.Cache
