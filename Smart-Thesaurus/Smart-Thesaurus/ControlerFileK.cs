@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using MaterialSkin.Controls;
 using System.Text.RegularExpressions;
+using System.Data;
 
 namespace Smart_Thesaurus
 {
@@ -92,6 +93,14 @@ namespace Smart_Thesaurus
             _lstView.Items.AddRange(searchedItem);
             lstItem = searchedItem;
             
+        }
+
+
+       public void storeDataInDataSet(string _path)
+        {
+            DataSet dataSet = new DataSet();
+            DataSetTemp dataTmp = new DataSetTemp();
+            dataTmp.Tables["t_fileTemp"];
         }
 
         /// <summary>

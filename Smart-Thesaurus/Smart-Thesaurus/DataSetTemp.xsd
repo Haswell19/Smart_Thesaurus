@@ -12,7 +12,7 @@
   <xs:element name="DataSetTemp" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetTemp" msprop:Generator_UserDSName="DataSetTemp">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_RowClassName="DataTable1Row">
+        <xs:element name="t_FileTemp" msprop:Generator_TableClassName="t_FileTempDataTable" msprop:Generator_TableVarName="tablet_FileTemp" msprop:Generator_TablePropName="t_FileTemp" msprop:Generator_RowDeletingName="t_FileTempRowDeleting" msprop:Generator_RowChangingName="t_FileTempRowChanging" msprop:Generator_RowEvHandlerName="t_FileTempRowChangeEventHandler" msprop:Generator_RowDeletedName="t_FileTempRowDeleted" msprop:Generator_UserTableName="t_FileTemp" msprop:Generator_RowChangedName="t_FileTempRowChanged" msprop:Generator_RowEvArgName="t_FileTempRowChangeEvent" msprop:Generator_RowClassName="t_FileTempRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="idFile" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msprop:Generator_ColumnVarNameInTable="columnidFile" msprop:Generator_ColumnPropNameInRow="idFile" msprop:Generator_ColumnPropNameInTable="idFileColumn" msprop:Generator_UserColumnName="idFile" type="xs:int" />
@@ -29,7 +29,7 @@
       </xs:choice>
     </xs:complexType>
     <xs:unique name="idFile" msdata:PrimaryKey="true">
-      <xs:selector xpath=".//mstns:DataTable1" />
+      <xs:selector xpath=".//mstns:t_FileTemp" />
       <xs:field xpath="mstns:idFile" />
     </xs:unique>
   </xs:element>
