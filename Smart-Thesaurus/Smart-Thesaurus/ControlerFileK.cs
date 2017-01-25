@@ -3,39 +3,37 @@ using System.IO;
 using System.Windows.Forms;
 using System.Diagnostics;
 using MaterialSkin.Controls;
+using System.Text.RegularExpressions;
 
 namespace Smart_Thesaurus
 {
     class ControlerFileK
     {
-        ControlerFileK controlerK;
+        static ControlerFileK controlerK;
         string[] lstFiles;
         ListViewItem[] lstItem;
         string path;
-        MaterialListView _lstView;
+        static protected MaterialListView _lstView;
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="_lstBox"></param>
-        private ControlerFileK()
-        {
-           
-
-        }
+        private ControlerFileK() {}
 
         /// <summary>
         /// Avoir une seul instance de COntroller K
         /// </summary>
         /// <returns>contrller K</returns>
-        public ControlerFileK getInstance()
+        public static ControlerFileK getInstance(MaterialListView _lstBox)
         {
             if (controlerK == null)
             {
                 //faire un new ControlerFileK et y cherhcer les infos
                 controlerK = new ControlerFileK();
-
+                _lstView = _lstBox;
             }
+
             return controlerK;
         }
 
@@ -44,14 +42,55 @@ namespace Smart_Thesaurus
         /// </summary>
         /// <param name="_toSearch"></param>
         /// <param name="_lstView"></param>
-        public void SearchWord(string _toSearch,MaterialListView _lstView)
+        public void SearchWord(string _toSearch, string _path)
         {
-            
-            bool[] index =new bool[this._lstView.Items.Count];
-            
+            //avoir tous les élments avec les informations pour pouvoir chercher partout
+            indexationFiles(_path);
+            //nouvelle liste d'item
+            ListViewItem[] searchedItem;
 
+            bool[] index = new bool[lstItem.Length];
+
+            int nbrSearchedItem = 0;
+
+            for (int i = 0; i < lstItem.Length; i++)
+            {
+                //tester les 3 collones pour afficher les élèments
+                if (Regex.IsMatch(_lstView.Items[i].SubItems[1].Text, _toSearch)||
+                    Regex.IsMatch(_lstView.Items[i].SubItems[2].Text,_toSearch)||
+                    Regex.IsMatch(_lstView.Items[i].SubItems[3].Text,_toSearch))
+                {
+                    //mettre tru dans un tableau et incrémenter une variable
+                    index[i] = true;
+                    nbrSearchedItem++;
+                }
+                else
+                {
+                    index[i] = false;
+                }
+            }
+            
+            //definir la taille du tableau des élèments 
+            searchedItem = new ListViewItem[nbrSearchedItem];
+            //lstFiles = Directory.GetFiles(path, "*", SearchOption.AllDirectories);
+            nbrSearchedItem = 0;
+            for (int i = 0; i < lstItem.Length; i++)
+            {
+                if (index[i])
+                {
+                    //créer un item s'il contient le mot choisit
+                    ListViewItem item = new ListViewItem();
+                    item.SubItems.Add(lstFiles[i].Replace(getFileName(lstFiles[i]) + getExtention(lstFiles[i]), ""));
+                    item.SubItems.Add(getFileName(lstFiles[i].Replace("."+ getExtention(lstFiles[i]), "")));
+                    item.SubItems.Add(getExtention(lstFiles[i]));
+                    searchedItem[nbrSearchedItem] = item;
+                    nbrSearchedItem++;
+                }
+            }
+            //suprimer tout de la liste view et afficher les nouveau items
             _lstView.Items.Clear();
-            _lstView.Items.AddRange(lstItem);
+            _lstView.Items.AddRange(searchedItem);
+            lstItem = searchedItem;
             
         }
 
@@ -59,15 +98,15 @@ namespace Smart_Thesaurus
         /// Indexer tous les fichiers du K
         /// </summary>
         /// <param name="_path"></param>
-        public void indexationFiles(string _path,MaterialListView _lstBox)
+        public void indexationFiles(string _path)
         {
             //tester si la personne est connectée au K ou pas
             try
             {
-                _lstView = _lstBox;
+                path = _path;
                 _lstView.Items.Clear();
                 //recupérer tous les fihciers du K
-                lstFiles = Directory.GetFiles(_path, "*", SearchOption.AllDirectories);
+                lstFiles = Directory.GetFiles(path, "*", SearchOption.AllDirectories);
 
                 //faire une liste d'élèments à afficher
                 lstItem = new ListViewItem[lstFiles.Length];
@@ -77,7 +116,7 @@ namespace Smart_Thesaurus
                 {
                     ListViewItem item = new ListViewItem("");
                     item.SubItems.Add(lstFiles[i].Replace(getFileName(lstFiles[i]) + getExtention(lstFiles[i]), ""));
-                    item.SubItems.Add(getFileName(lstFiles[i].Replace(".", "")));
+                    item.SubItems.Add(getFileName(lstFiles[i].Replace("."+ getExtention(lstFiles[i]), "")));
                     item.SubItems.Add(getExtention(lstFiles[i]));
                     lstItem[i] = item;
                 }
