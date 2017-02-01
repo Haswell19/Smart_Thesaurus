@@ -20,7 +20,7 @@ namespace Smart_Thesaurus
         /// 
         /// </summary>
         /// <param name="_lstBox"></param>
-        private ControlerFileK() {}
+        private ControlerFileK() { }
 
         /// <summary>
         /// Avoir une seul instance de COntroller K
@@ -57,9 +57,9 @@ namespace Smart_Thesaurus
             for (int i = 0; i < lstItem.Length; i++)
             {
                 //tester les 3 collones pour afficher les élèments
-                if (Regex.IsMatch(_lstView.Items[i].SubItems[1].Text, _toSearch)||
-                    Regex.IsMatch(_lstView.Items[i].SubItems[2].Text,_toSearch)||
-                    Regex.IsMatch(_lstView.Items[i].SubItems[3].Text,_toSearch))
+                if (Regex.IsMatch(_lstView.Items[i].SubItems[1].Text, _toSearch) ||
+                    Regex.IsMatch(_lstView.Items[i].SubItems[2].Text, _toSearch) ||
+                    Regex.IsMatch(_lstView.Items[i].SubItems[3].Text, _toSearch))
                 {
                     //mettre tru dans un tableau et incrémenter une variable
                     index[i] = true;
@@ -70,7 +70,7 @@ namespace Smart_Thesaurus
                     index[i] = false;
                 }
             }
-            
+
             //definir la taille du tableau des élèments 
             searchedItem = new ListViewItem[nbrSearchedItem];
             //lstFiles = Directory.GetFiles(path, "*", SearchOption.AllDirectories);
@@ -79,11 +79,24 @@ namespace Smart_Thesaurus
             {
                 if (index[i])
                 {
-                    //créer un item s'il contient le mot choisit
-                    ListViewItem item = new ListViewItem();
-                    item.SubItems.Add(lstFiles[i].Replace(getFileName(lstFiles[i]) + getExtention(lstFiles[i]), ""));
-                    item.SubItems.Add(getFileName(lstFiles[i].Replace("."+ getExtention(lstFiles[i]), "")));
-                    item.SubItems.Add(getExtention(lstFiles[i]));
+                    //string pour avoir le nom de fichier ou son extention et son emplacement
+                    string toReplace;
+                    string fileName = getFileName(lstFiles[i]);
+                    string fileExtention = getExtention(lstFiles[i]);
+                    if (fileExtention != "")
+                    {
+                        toReplace = fileName + "." + fileExtention;
+                    }
+                    else
+                    {
+                        toReplace = fileName;
+                    }
+                    string filePath = lstFiles[i].Replace(toReplace, "");
+                    //ajouter a la liste d'item qui seront par la suite ajouter a la listview
+                    ListViewItem item = new ListViewItem("");
+                    item.SubItems.Add(filePath);
+                    item.SubItems.Add(fileName);
+                    item.SubItems.Add(fileExtention);
                     searchedItem[nbrSearchedItem] = item;
                     nbrSearchedItem++;
                 }
@@ -92,11 +105,11 @@ namespace Smart_Thesaurus
             _lstView.Items.Clear();
             _lstView.Items.AddRange(searchedItem);
             lstItem = searchedItem;
-            
+
         }
 
 
-       public void storeDataInDataSet(string _path)
+        public void storeDataInDataSet(string _path)
         {
             /*DataSet dataSet = new DataSet();
             DataSetTemp dataTmp = new DataSetTemp();
@@ -123,10 +136,25 @@ namespace Smart_Thesaurus
                 //stocker le nom, chemin  et extension du fichier
                 for (int i = 0; i < lstFiles.Length; i++)
                 {
+                    //stocker les information sur le fichier qui est en cours de traitement
+                    string toReplace;
+                    string fileName = getFileName(lstFiles[i]);
+                    string fileExtention = getExtention(lstFiles[i]);
+                    if (fileExtention != "")
+                    {
+                        toReplace = fileName + "." + fileExtention;
+                    }
+                    else
+                    {
+                        toReplace = fileName;
+                    }
+                    string filePath = lstFiles[i].Replace(toReplace, "");
+
+                    //ajouter dans un tableau d'item de listview qui sera donc ajouter a la liste view du programme
                     ListViewItem item = new ListViewItem("");
-                    item.SubItems.Add(lstFiles[i].Replace(getFileName(lstFiles[i]) + getExtention(lstFiles[i]), ""));
-                    item.SubItems.Add(getFileName(lstFiles[i].Replace("."+ getExtention(lstFiles[i]), "")));
-                    item.SubItems.Add(getExtention(lstFiles[i]));
+                    item.SubItems.Add(filePath);
+                    item.SubItems.Add(fileName);
+                    item.SubItems.Add(fileExtention);
                     lstItem[i] = item;
                 }
                 //ajouter tout le tableau a la liste view
@@ -150,12 +178,13 @@ namespace Smart_Thesaurus
             try
             {
                 //recupérer le fichier
-                string file = _lstView.Items[index].SubItems[1].Text+"\\"+ _lstView.Items[index].SubItems[2].Text+"."+ _lstView.Items[index].SubItems[3].Text;
+                string file = _lstView.Items[index].SubItems[1].Text + "\\" + _lstView.Items[index].SubItems[2].Text + "." + _lstView.Items[index].SubItems[3].Text;
                 //ouvrir le fichier
                 ProcessStartInfo psi = new ProcessStartInfo(file);
                 Process.Start(psi);
             }
             catch { }
+
 
         }
 
@@ -172,6 +201,11 @@ namespace Smart_Thesaurus
             if (getExtention(name).Length != 0)
             {
                 name = name.Replace(getExtention(name), "");
+            }
+
+            if (name[name.Length - 1] == '.')
+            {
+                name = name.Remove(name.Length - 1);
             }
             //enlever tout le chemin qui se ttrouve avant le nom du fichier
             str = name.Split('\\');
