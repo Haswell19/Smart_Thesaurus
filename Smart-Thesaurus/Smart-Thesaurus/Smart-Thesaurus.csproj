@@ -56,14 +56,6 @@
     <Compile Include="Affichage.Designer.cs">
       <DependentUpon>Affichage.cs</DependentUpon>
     </Compile>
-    <Compile Include="DataSetTemp.cs">
-      <DependentUpon>DataSetTemp.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="DataSetTemp.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataSetTemp.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Affichage.resx">
@@ -78,17 +70,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="DataSetTemp.xsc">
-      <DependentUpon>DataSetTemp.xsd</DependentUpon>
-    </None>
-    <None Include="DataSetTemp.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DataSetTemp.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="DataSetTemp.xss">
-      <DependentUpon>DataSetTemp.xsd</DependentUpon>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

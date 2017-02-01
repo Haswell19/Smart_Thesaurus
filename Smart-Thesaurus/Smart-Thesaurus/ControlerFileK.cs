@@ -98,9 +98,9 @@ namespace Smart_Thesaurus
 
        public void storeDataInDataSet(string _path)
         {
-            DataSet dataSet = new DataSet();
+            /*DataSet dataSet = new DataSet();
             DataSetTemp dataTmp = new DataSetTemp();
-            dataTmp.Tables["t_fileTemp"];
+            dataTmp.Tables["t_fileTemp"];*/
         }
 
         /// <summary>
