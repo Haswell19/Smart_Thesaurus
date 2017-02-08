@@ -4,8 +4,10 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using MaterialSkin.Controls;
 using System.Text.RegularExpressions;
-using System.Xml.Serialization;
+using System.Xml;
 using System.Collections.Generic;
+using System.Xml.Linq;
+using System.Linq;
 
 namespace Smart_Thesaurus
 {
@@ -144,35 +146,85 @@ namespace Smart_Thesaurus
                 item.SubItems.Add(fileExtention);
                 lstDataToAdd[i] = item;
             }
-            storeDataInDataSet();
+            storeDataInXML();
             return lstDataToAdd;
         }
 
-        public void storeDataInDataSet()
+        /// <summary>
+        /// Ajouter des données au fichier XML
+        /// </summary>
+        public void storeDataInXML()
         {
-            //TODO store the data
-            XmlSerializer xs = new XmlSerializer(typeof(DataK));
-            using (StreamWriter wr = new StreamWriter("dataFromK.xml"))
+            XDocument xmlDoc;
+            string fileName = "dataFromK.xml";
+
+            //essayer de recuperer le fichier xml et si il n'existe pas le créer
+            try
             {
-                foreach (DataK k in dataK)
-                    xs.Serialize(wr, k);
+                xmlDoc = XDocument.Load("dataFromK.xml");
             }
+            catch
+            {
+                xmlDoc = new XDocument(new XElement("Files"));
+                xmlDoc.Save(fileName);
+            }
+
+            //ajouter toutes les données au fichier xml
+            for (int i = 0; i < dataK.Count; i++)
+            {
+                xmlDoc.Element("Files").Add(new XElement("File", new XElement("Path", dataK[i].filePath), new XElement("Extention",dataK[i].fileExtention),new XElement("Name",dataK[i].fileName)));
+            }
+
+            //sauvegarder le document
+            xmlDoc.Save(fileName);
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public List<DataK> readData()
         {
-           try
-            {
-                List<DataK> lstdataK = new List<DataK>();
-                XmlSerializer xs = new XmlSerializer(typeof(DataK));
-                using (StreamReader rd = new StreamReader("dataFromK.xml"))
+            try {
+                var allData = new List<DataK>();
+                using (var xmlReader = new StreamReader("dataFromK.xml"))
                 {
-                    foreach (DataK k in (DataK[])xs.Deserialize(rd))
-                        lstdataK.Add(k);
+                    var doc = XDocument.Load(xmlReader);
+                    XNamespace nonamespace = XNamespace.None;
+                    var result = (from files in doc.Descendants(nonamespace + "File")
+                                  select 
+                                  new DataK
+                                  {
+                                      filePath = files.Element("Path").Value,
+                                      fileName = files.Element("Name").Value,
+                                      fileExtention = files.Element("Extention").Value,
+                                  }).ToList();
+                    foreach (var data in result)
+                    {
+                        allData.Add(data);
+                    }
                 }
+                
+
+                return allData;
+            }
+
+           /* try
+            {
+                //liste qui sera a retouner par la suite
+                // = new List<DataK>();
+
+                //load le fichier xml
+                XDocument xmlDoc = XDocument.Load("dataFromK.xml");
+
+                List<DataK> lstdataK = xmlDoc.Root.Elements("Files").Select(x => new DataK
+                        {
+                            filePath = (string)x.Element("Path"),
+                            fileExtention = (string)x.Element("Extention"),
+                            fileName = (string)x.Element("Name")
+                        }).ToList();
                 return lstdataK;
-           }
+            }*/
             catch
             {
                 return null;
@@ -204,13 +256,16 @@ namespace Smart_Thesaurus
             {
 
                 dataK = new List<DataK>(readData());
+                lstItem = new ListViewItem[dataK.Count];
                 for (int i = 0; i < dataK.Count; i++)
                 {
                     ListViewItem item = new ListViewItem("");
                     item.SubItems.Add(dataK[i].filePath);
                     item.SubItems.Add(dataK[i].fileName);
                     item.SubItems.Add(dataK[i].fileExtention);
+                    lstItem[i] = item;
                 }
+                
             }
 
             //ajouter tout le tableau a la liste view
