@@ -1,40 +1,59 @@
-﻿using System;
+﻿//ETML
+// Jusitn Vuffray
+// 18.01.17
+// Travail sur l'indexation du K
+using System;
 using System.IO;
 using System.Windows.Forms;
 using System.Diagnostics;
 using MaterialSkin.Controls;
+using CronNET;
 using System.Text.RegularExpressions;
-using System.Xml;
 using System.Collections.Generic;
 using System.Xml.Linq;
 using System.Linq;
 
+
 namespace Smart_Thesaurus
 {
-    class ControlerFileK
+    /// <summary>
+    /// Classe prévue pour l'indexation du K et ouvrir les fichiers et les stockers
+    /// </summary>
+    class WorkWithFileK
     {
-        static ControlerFileK controlerK;
+        //cron class
+
+        //le type de mise a joure que l'utlisateur aura choisit
+        int intMajType;
+        //class du singleton
+        static WorkWithFileK controlerK;
+        //tableau qui contient les fichiers
         string[] lstFiles;
+        //liste des items qui seront afficher dans la liste view
         ListViewItem[] lstItem;
+        //chemin des fichiers a indexé
         string path;
+        //liste view dans la quelle les infos seront stocké
         static protected MaterialListView _lstView;
+        //liste avec tous les fihciers du K
         List<DataK> dataK = new List<DataK>();
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="_lstBox"></param>
-        private ControlerFileK() { }
+        private WorkWithFileK() { }
 
         /// <summary>
         /// Avoir une seul instance de COntroller K
         /// </summary>
         /// <returns>contrller K</returns>
-        public static ControlerFileK getInstance(MaterialListView _lstBox)
+        public static WorkWithFileK getInstance(MaterialListView _lstBox)
         {
             if (controlerK == null)
             {
                 //faire un new ControlerFileK et y cherhcer les infos
-                controlerK = new ControlerFileK();
+                controlerK = new WorkWithFileK();
                 _lstView = _lstBox;
             }
 
@@ -150,81 +169,95 @@ namespace Smart_Thesaurus
             return lstDataToAdd;
         }
 
+        public void changeUpdateType(int i)
+        {
+            intMajType = i;
+
+            switch (intMajType)
+            {
+                case 1:
+                    //TODO maj xml chaque jour
+                    break;
+
+                case 2:
+                    //TODO maj xml chaque heure
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        public void changeUpdateType(int i, string majType)
+        {
+            //TODO set cron maj
+        }
+
         /// <summary>
         /// Ajouter des données au fichier XML
         /// </summary>
         public void storeDataInXML()
         {
-            XDocument xmlDoc;
-            string fileName = "dataFromK.xml";
+                XDocument xmlDoc;
+                string fileName = "dataFromK.xml";
 
-            //essayer de recuperer le fichier xml et si il n'existe pas le créer
-            try
-            {
-                xmlDoc = XDocument.Load("dataFromK.xml");
-            }
-            catch
-            {
-                xmlDoc = new XDocument(new XElement("Files"));
+                //essayer de recuperer le fichier xml et si il n'existe pas le créer
+                try
+                {
+                    xmlDoc = XDocument.Load("dataFromK.xml");
+                }
+                catch
+                {
+                    xmlDoc = new XDocument(new XElement("Files"));
+                    xmlDoc.Save(fileName);
+                }
+
+                //ajouter toutes les données au fichier xml
+                for (int i = 0; i < dataK.Count; i++)
+                {
+                    xmlDoc.Element("Files").Add(new XElement("File", new XElement("Path", dataK[i].filePath), new XElement("Extention", dataK[i].fileExtention), new XElement("Name", dataK[i].fileName)));
+                }
+
+                //sauvegarder le document
                 xmlDoc.Save(fileName);
-            }
-
-            //ajouter toutes les données au fichier xml
-            for (int i = 0; i < dataK.Count; i++)
-            {
-                xmlDoc.Element("Files").Add(new XElement("File", new XElement("Path", dataK[i].filePath), new XElement("Extention",dataK[i].fileExtention),new XElement("Name",dataK[i].fileName)));
-            }
-
-            //sauvegarder le document
-            xmlDoc.Save(fileName);
+            
         }
 
         /// <summary>
-        /// 
+        /// Lire les informations qui se trouve dans le fihcier xml
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Liste avec tous les fichiers xml</returns>
         public List<DataK> readData()
         {
-            try {
-                var allData = new List<DataK>();
+            try
+            {
+                //liste qui sera retourmée
+                List<DataK> allData = new List<DataK>();
+
+                //ouvrir le document
                 using (var xmlReader = new StreamReader("dataFromK.xml"))
                 {
-                    var doc = XDocument.Load(xmlReader);
+                    //ouvrir le document a partir du bon type
+                    XDocument xDoc = XDocument.Load(xmlReader);
                     XNamespace nonamespace = XNamespace.None;
-                    var result = (from files in doc.Descendants(nonamespace + "File")
-                                  select 
+
+                    //stockage des données dans result
+                    var result = (from files in xDoc.Descendants(nonamespace + "File")
+                                  select
                                   new DataK
                                   {
                                       filePath = files.Element("Path").Value,
                                       fileName = files.Element("Name").Value,
                                       fileExtention = files.Element("Extention").Value,
                                   }).ToList();
+                    //ajouter tout ce qui se trouve dasn la variable resukt a la liste allData
                     foreach (var data in result)
                     {
                         allData.Add(data);
                     }
                 }
-                
-
                 return allData;
             }
-
-           /* try
-            {
-                //liste qui sera a retouner par la suite
-                // = new List<DataK>();
-
-                //load le fichier xml
-                XDocument xmlDoc = XDocument.Load("dataFromK.xml");
-
-                List<DataK> lstdataK = xmlDoc.Root.Elements("Files").Select(x => new DataK
-                        {
-                            filePath = (string)x.Element("Path"),
-                            fileExtention = (string)x.Element("Extention"),
-                            fileName = (string)x.Element("Name")
-                        }).ToList();
-                return lstdataK;
-            }*/
             catch
             {
                 return null;
@@ -238,44 +271,50 @@ namespace Smart_Thesaurus
         public void indexationFiles(string _path)
         {
             //tester si la personne est connectée au K ou pas
-            /* try
-             {*/
-            path = _path;
-            _lstView.Items.Clear();
-
-            //recupérer tous les fihciers du K
-            lstFiles = Directory.GetFiles(path, "*", SearchOption.AllDirectories);
-
-            //faire une liste d'élèments à afficher
-            lstItem = new ListViewItem[lstFiles.Length];
-            if (readData() == null)
+            try
             {
-                lstItem = addData(lstItem);
-            }
-            else
-            {
+                path = _path;
+                _lstView.Items.Clear();
 
-                dataK = new List<DataK>(readData());
-                lstItem = new ListViewItem[dataK.Count];
-                for (int i = 0; i < dataK.Count; i++)
+                //recupérer tous les fihciers du K
+                lstFiles = Directory.GetFiles(path, "*", SearchOption.AllDirectories);
+
+                //faire une liste d'élèments à afficher
+                lstItem = new ListViewItem[lstFiles.Length];
+                if(intMajType == 0)
                 {
-                    ListViewItem item = new ListViewItem("");
-                    item.SubItems.Add(dataK[i].filePath);
-                    item.SubItems.Add(dataK[i].fileName);
-                    item.SubItems.Add(dataK[i].fileExtention);
-                    lstItem[i] = item;
+                    //ajouter les fichiers du K à l'affichage
+                    lstItem = addData(lstItem);
                 }
-                
-            }
+                else if (readData() == null)
+                {
+                    //ajouter les fichiers du K à l'affichage
+                    lstItem = addData(lstItem);
+                }
+                else
+                {
+                    //lire toutes les données puis les afficher
+                    dataK = new List<DataK>(readData());
+                    lstItem = new ListViewItem[dataK.Count];
+                    for (int i = 0; i < dataK.Count; i++)
+                    {
+                        ListViewItem item = new ListViewItem("");
+                        item.SubItems.Add(dataK[i].filePath);
+                        item.SubItems.Add(dataK[i].fileName);
+                        item.SubItems.Add(dataK[i].fileExtention);
+                        lstItem[i] = item;
+                    }
 
-            //ajouter tout le tableau a la liste view
-            _lstView.Items.AddRange(lstItem);
-            /* }
-             catch
-             {
-                 //infomraer l'utilisatuer qu'il n'est pas connecté au K
-                 MessageBox.Show("Vous n'êtes pas connecté au K:\\");
-             }*/
+                }
+
+                //ajouter tout le tableau a la liste view
+                _lstView.Items.AddRange(lstItem);
+            }
+            catch
+            {
+                //infomraer l'utilisatuer qu'il n'est pas connecté au K
+                MessageBox.Show("Vous n'êtes pas connecté au K:\\");
+            }
         }
 
         /// <summary>
@@ -294,7 +333,10 @@ namespace Smart_Thesaurus
                 ProcessStartInfo psi = new ProcessStartInfo(file);
                 Process.Start(psi);
             }
-            catch { }
+            catch
+            {
+                MessageBox.Show("Un problème est survenu, le fichier n'existe plus.");
+            }
         }
 
         /// <summary>

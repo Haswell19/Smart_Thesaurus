@@ -35,9 +35,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CronNET, Version=1.1.4939.24773, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CronNET.1.1.4939.24773\lib\net40\CronNET.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="MaterialSkin">
       <HintPath>lib\MaterialSkin.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -51,7 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ControlerFileK.cs" />
+    <Compile Include="WorkWithFileK.cs" />
     <Compile Include="Affichage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,6 +78,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

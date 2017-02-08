@@ -2,17 +2,38 @@
 using MaterialSkin.Controls;
 using System;
 using System.Windows.Forms;
+using Microsoft.VisualBasic;
 
 namespace Smart_Thesaurus
 {
     public partial class Affichage : MaterialForm
     {
-        ControlerFileK controlerK;
+        WorkWithFileK controlerK;
         string path = @"K:\INF\Eleves\Temp";
+        string cronMessage = @"
+*   *    *   *   *  
+┬ ┬ ┬ ┬ ┬
+│ │ │ │ │
+│ │ │ │ │
+│ │ │ │ └ jour de la semaine (0 - 6)
+│ │ │ │   (dimanche=0 )
+│ │ │ └── mois (1 - 12)
+│ │ └──── jour du mois (1 - 31)
+│ └────── heure (0 - 23)
+└──────── min (0 - 59)
+
+`* * * * *`        Chaque min.
+`0 * * * *`        chaque heure.
+`0,1,2 * * * *`    chaque heure à 0, 1, and 2 min.
+`*/2 * * * *`      chaque deux min.
+`1-55 * * * *`     chauqe min entre 1 & 55 min.
+`* 1,10,20 * * *`  1, 10 & 20 heures.
+        ";
 
 
         public Affichage()
-        {
+        {            
+
             InitializeComponent();
             //Créaton de la form material design
             var materialSkinManager = MaterialSkinManager.Instance;
@@ -32,7 +53,7 @@ namespace Smart_Thesaurus
             
             if (controlerK == null)
             {
-                controlerK = ControlerFileK.getInstance(lstViewK);
+                controlerK = WorkWithFileK.getInstance(lstViewK);
             }
            controlerK.indexationFiles(path);            
         }
@@ -61,11 +82,48 @@ namespace Smart_Thesaurus
         /// <param name="e"></param>
         private void materialFlatButton1_Click(object sender, EventArgs e)
         {
+            //controler que controlerk soit pas null sinon lui mettre une valeur
             if (controlerK == null)
             {
-                controlerK = ControlerFileK.getInstance(lstViewK);
+                controlerK = WorkWithFileK.getInstance(lstViewK);
             }
+            //lancer la recherche
             controlerK.SearchWord(txtField.Text,path);
+        }
+
+        private void cbBoxMaj_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //controler que controlerk soit pas null sinon lui mettre une valeur
+            if (controlerK == null)
+            {
+                controlerK = WorkWithFileK.getInstance(lstViewK);
+            }
+            //activer le bouton de mise a jour manuel
+            if (cbBoxMaj.SelectedIndex == 0) { btnDataMaj.Enabled= true; }
+
+            if (cbBoxMaj.SelectedIndex != 0 && cbBoxMaj.SelectedIndex != 3)
+            {
+                //lancer le changer de mode de mise a jour
+                controlerK.changeUpdateType(cbBoxMaj.SelectedIndex);
+            }
+            else if (cbBoxMaj.SelectedIndex == 3)
+            {
+                //demander comment mettre a jour le cron
+                Interaction.InputBox("Comment mettre à jour ? "+cronMessage, "CRON mise à jour", "Default Text");
+
+            }
+
+
+        }
+
+        private void btnDataMaj_Click(object sender, EventArgs e)
+        {
+            //controler que controlerk soit pas null sinon lui mettre une valeur
+            if (controlerK == null)
+            {
+                controlerK = WorkWithFileK.getInstance(lstViewK);
+            }
+            controlerK.storeDataInXML();
         }
     }
 }

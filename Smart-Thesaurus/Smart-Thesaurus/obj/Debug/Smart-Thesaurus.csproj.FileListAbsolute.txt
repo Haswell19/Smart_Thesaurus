@@ -37,3 +37,4 @@ F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus\Smart-Thesaurus\obj\Debug\S
 F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus\Smart-Thesaurus\obj\Debug\Smart_Thesaurus.Affichage.resources
 F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus\Smart-Thesaurus\obj\Debug\Smart_Thesaurus.Properties.Resources.resources
 F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus\Smart-Thesaurus\obj\Debug\Smart-Thesaurus.csproj.GenerateResource.Cache
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus\Smart-Thesaurus\bin\Debug\CronNET.dll
