@@ -4,7 +4,8 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using MaterialSkin.Controls;
 using System.Text.RegularExpressions;
-using System.Data;
+using System.Xml.Serialization;
+using System.Collections.Generic;
 
 namespace Smart_Thesaurus
 {
@@ -15,7 +16,7 @@ namespace Smart_Thesaurus
         ListViewItem[] lstItem;
         string path;
         static protected MaterialListView _lstView;
-
+        List<DataK> dataK = new List<DataK>();
         /// <summary>
         /// 
         /// </summary>
@@ -73,7 +74,7 @@ namespace Smart_Thesaurus
 
             //definir la taille du tableau des élèments 
             searchedItem = new ListViewItem[nbrSearchedItem];
-            //lstFiles = Directory.GetFiles(path, "*", SearchOption.AllDirectories);
+
             nbrSearchedItem = 0;
             for (int i = 0; i < lstItem.Length; i++)
             {
@@ -108,12 +109,74 @@ namespace Smart_Thesaurus
 
         }
 
-
-        public void storeDataInDataSet(string _path)
+        /// <summary>
+        /// Stocke les informations afficher dans un fichier
+        /// </summary>
+        /// <param name="lstDataToAdd">le tableau d'item</param>
+        /// <returns>le tableau d'items rempli</returns>
+        public ListViewItem[] addData(ListViewItem[] lstDataToAdd)
         {
-            /*DataSet dataSet = new DataSet();
-            DataSetTemp dataTmp = new DataSetTemp();
-            dataTmp.Tables["t_fileTemp"];*/
+            //stocker le nom, chemin  et extension du fichier
+            for (int i = 0; i < lstDataToAdd.Length; i++)
+            {
+                //stocker les information sur le fichier qui est en cours de traitement
+                string toReplace;
+                string fileName = getFileName(lstFiles[i]);
+                string fileExtention = getExtention(lstFiles[i]);
+                if (fileExtention != "")
+                {
+                    toReplace = fileName + "." + fileExtention;
+                }
+                else
+                {
+                    toReplace = fileName;
+                }
+                string filePath = lstFiles[i].Replace(toReplace, "");
+                DataK currentFile = new DataK();
+                currentFile.filePath = filePath;
+                currentFile.fileName = fileName;
+                currentFile.fileExtention = fileExtention;
+                dataK.Add(currentFile);
+                //ajouter dans un tableau d'item de listview qui sera donc ajouter a la liste view du programme
+                ListViewItem item = new ListViewItem("");
+                item.SubItems.Add(filePath);
+                item.SubItems.Add(fileName);
+                item.SubItems.Add(fileExtention);
+                lstDataToAdd[i] = item;
+            }
+            storeDataInDataSet();
+            return lstDataToAdd;
+        }
+
+        public void storeDataInDataSet()
+        {
+            //TODO store the data
+            XmlSerializer xs = new XmlSerializer(typeof(DataK));
+            using (StreamWriter wr = new StreamWriter("dataFromK.xml"))
+            {
+                foreach (DataK k in dataK)
+                    xs.Serialize(wr, k);
+            }
+        }
+
+
+        public List<DataK> readData()
+        {
+           try
+            {
+                List<DataK> lstdataK = new List<DataK>();
+                XmlSerializer xs = new XmlSerializer(typeof(DataK));
+                using (StreamReader rd = new StreamReader("dataFromK.xml"))
+                {
+                    foreach (DataK k in (DataK[])xs.Deserialize(rd))
+                        lstdataK.Add(k);
+                }
+                return lstdataK;
+           }
+            catch
+            {
+                return null;
+            }
         }
 
         /// <summary>
@@ -123,48 +186,41 @@ namespace Smart_Thesaurus
         public void indexationFiles(string _path)
         {
             //tester si la personne est connectée au K ou pas
-            try
+            /* try
+             {*/
+            path = _path;
+            _lstView.Items.Clear();
+
+            //recupérer tous les fihciers du K
+            lstFiles = Directory.GetFiles(path, "*", SearchOption.AllDirectories);
+
+            //faire une liste d'élèments à afficher
+            lstItem = new ListViewItem[lstFiles.Length];
+            if (readData() == null)
             {
-                path = _path;
-                _lstView.Items.Clear();
-                //recupérer tous les fihciers du K
-                lstFiles = Directory.GetFiles(path, "*", SearchOption.AllDirectories);
+                lstItem = addData(lstItem);
+            }
+            else
+            {
 
-                //faire une liste d'élèments à afficher
-                lstItem = new ListViewItem[lstFiles.Length];
-
-                //stocker le nom, chemin  et extension du fichier
-                for (int i = 0; i < lstFiles.Length; i++)
+                dataK = new List<DataK>(readData());
+                for (int i = 0; i < dataK.Count; i++)
                 {
-                    //stocker les information sur le fichier qui est en cours de traitement
-                    string toReplace;
-                    string fileName = getFileName(lstFiles[i]);
-                    string fileExtention = getExtention(lstFiles[i]);
-                    if (fileExtention != "")
-                    {
-                        toReplace = fileName + "." + fileExtention;
-                    }
-                    else
-                    {
-                        toReplace = fileName;
-                    }
-                    string filePath = lstFiles[i].Replace(toReplace, "");
-
-                    //ajouter dans un tableau d'item de listview qui sera donc ajouter a la liste view du programme
                     ListViewItem item = new ListViewItem("");
-                    item.SubItems.Add(filePath);
-                    item.SubItems.Add(fileName);
-                    item.SubItems.Add(fileExtention);
-                    lstItem[i] = item;
+                    item.SubItems.Add(dataK[i].filePath);
+                    item.SubItems.Add(dataK[i].fileName);
+                    item.SubItems.Add(dataK[i].fileExtention);
                 }
-                //ajouter tout le tableau a la liste view
-                _lstView.Items.AddRange(lstItem);
             }
-            catch
-            {
-                //infomraer l'utilisatuer qu'il n'est pas connecté au K
-                MessageBox.Show("Vous n'êtes pas connecté au K:\\");
-            }
+
+            //ajouter tout le tableau a la liste view
+            _lstView.Items.AddRange(lstItem);
+            /* }
+             catch
+             {
+                 //infomraer l'utilisatuer qu'il n'est pas connecté au K
+                 MessageBox.Show("Vous n'êtes pas connecté au K:\\");
+             }*/
         }
 
         /// <summary>
@@ -184,8 +240,6 @@ namespace Smart_Thesaurus
                 Process.Start(psi);
             }
             catch { }
-
-
         }
 
         /// <summary>
@@ -195,7 +249,6 @@ namespace Smart_Thesaurus
         /// <returns>nom du fichier</returns>
         public string getFileName(string name)
         {
-
             string[] str;
             //enlever l'extenton du fichier s'il en a une
             if (getExtention(name).Length != 0)
