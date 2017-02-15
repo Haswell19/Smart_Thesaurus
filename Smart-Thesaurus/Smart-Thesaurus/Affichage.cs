@@ -10,7 +10,7 @@ namespace Smart_Thesaurus
     {
         WorkWithFileK controlerK;
         string path = @"K:\INF\Eleves\Temp";
-        string cronMessage = @"
+        const string CRONMSG = @"
 *   *    *   *   *  
 ┬ ┬ ┬ ┬ ┬
 │ │ │ │ │
@@ -109,7 +109,7 @@ namespace Smart_Thesaurus
             else if (cbBoxMaj.SelectedIndex == 3)
             {
                 //demander comment mettre a jour le cron
-                Interaction.InputBox("Comment mettre à jour ? "+cronMessage, "CRON mise à jour", "Default Text");
+                string cronDate = Interaction.InputBox("Comment mettre à jour ? "+CRONMSG, "CRON mise à jour", "");
 
             }
 
@@ -124,6 +124,12 @@ namespace Smart_Thesaurus
                 controlerK = WorkWithFileK.getInstance(lstViewK);
             }
             controlerK.storeDataInXML();
+        }
+
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+            WorkWithWebSite work = WorkWithWebSite.getInstance();
+            work.DownloadFile();
         }
     }
 }

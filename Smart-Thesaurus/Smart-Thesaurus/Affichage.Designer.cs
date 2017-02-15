@@ -42,6 +42,8 @@
             this.materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
             this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnDataMaj = new MaterialSkin.Controls.MaterialFlatButton();
+            this.cbBoxMaj = new System.Windows.Forms.ComboBox();
             this.materialFlatButton1 = new MaterialSkin.Controls.MaterialFlatButton();
             this.btnKIndex = new MaterialSkin.Controls.MaterialRaisedButton();
             this.txtField = new MaterialSkin.Controls.MaterialSingleLineTextField();
@@ -52,11 +54,11 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.cbBoxMaj = new System.Windows.Forms.ComboBox();
-            this.btnDataMaj = new MaterialSkin.Controls.MaterialFlatButton();
+            this.label1 = new System.Windows.Forms.Label();
             this.materialContextMenuStrip1.SuspendLayout();
             this.materialTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // materialContextMenuStrip1
@@ -174,6 +176,43 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "K:\\";
             // 
+            // btnDataMaj
+            // 
+            this.btnDataMaj.AutoSize = true;
+            this.btnDataMaj.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnDataMaj.Depth = 0;
+            this.btnDataMaj.Enabled = false;
+            this.btnDataMaj.Icon = null;
+            this.btnDataMaj.Location = new System.Drawing.Point(140, 390);
+            this.btnDataMaj.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnDataMaj.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnDataMaj.Name = "btnDataMaj";
+            this.btnDataMaj.Primary = false;
+            this.btnDataMaj.Size = new System.Drawing.Size(268, 36);
+            this.btnDataMaj.TabIndex = 12;
+            this.btnDataMaj.Text = "Mise à jour des données stockées";
+            this.btnDataMaj.UseVisualStyleBackColor = true;
+            this.btnDataMaj.Click += new System.EventHandler(this.btnDataMaj_Click);
+            // 
+            // cbBoxMaj
+            // 
+            this.cbBoxMaj.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.cbBoxMaj.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbBoxMaj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbBoxMaj.Font = new System.Drawing.Font("Gisha", 12.25F);
+            this.cbBoxMaj.ForeColor = System.Drawing.SystemColors.Window;
+            this.cbBoxMaj.FormattingEnabled = true;
+            this.cbBoxMaj.Items.AddRange(new object[] {
+            "Manuel",
+            "Quotidien",
+            "Chaque Heure",
+            "Personalisé"});
+            this.cbBoxMaj.Location = new System.Drawing.Point(635, 6);
+            this.cbBoxMaj.Name = "cbBoxMaj";
+            this.cbBoxMaj.Size = new System.Drawing.Size(121, 27);
+            this.cbBoxMaj.TabIndex = 10;
+            this.cbBoxMaj.SelectedIndexChanged += new System.EventHandler(this.cbBoxMaj_SelectedIndexChanged);
+            // 
             // materialFlatButton1
             // 
             this.materialFlatButton1.AutoSize = true;
@@ -271,6 +310,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.label1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -278,6 +318,7 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Site Web ETML";
             this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
             // 
             // tabPage3
             // 
@@ -289,42 +330,14 @@
             this.tabPage3.Text = "Educanet2";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // cbBoxMaj
+            // label1
             // 
-            this.cbBoxMaj.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.cbBoxMaj.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbBoxMaj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbBoxMaj.Font = new System.Drawing.Font("Gisha", 12.25F);
-            this.cbBoxMaj.ForeColor = System.Drawing.SystemColors.Window;
-            this.cbBoxMaj.FormattingEnabled = true;
-            this.cbBoxMaj.Items.AddRange(new object[] {
-            "Manuel",
-            "Quotidien",
-            "Chaque Heure",
-            "Personalisé"});
-            this.cbBoxMaj.Location = new System.Drawing.Point(635, 6);
-            this.cbBoxMaj.Name = "cbBoxMaj";
-            this.cbBoxMaj.Size = new System.Drawing.Size(121, 27);
-            this.cbBoxMaj.TabIndex = 10;
-            this.cbBoxMaj.SelectedIndexChanged += new System.EventHandler(this.cbBoxMaj_SelectedIndexChanged);
-            // 
-            // btnDataMaj
-            // 
-            this.btnDataMaj.AutoSize = true;
-            this.btnDataMaj.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnDataMaj.Depth = 0;
-            this.btnDataMaj.Enabled = false;
-            this.btnDataMaj.Icon = null;
-            this.btnDataMaj.Location = new System.Drawing.Point(140, 390);
-            this.btnDataMaj.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnDataMaj.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnDataMaj.Name = "btnDataMaj";
-            this.btnDataMaj.Primary = false;
-            this.btnDataMaj.Size = new System.Drawing.Size(268, 36);
-            this.btnDataMaj.TabIndex = 12;
-            this.btnDataMaj.Text = "Mise à jour des données stockées";
-            this.btnDataMaj.UseVisualStyleBackColor = true;
-            this.btnDataMaj.Click += new System.EventHandler(this.btnDataMaj_Click);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(8, 3);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "label1";
             // 
             // Affichage
             // 
@@ -342,6 +355,8 @@
             this.materialTabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -372,6 +387,7 @@
         private MaterialSkin.Controls.MaterialFlatButton materialFlatButton1;
         private System.Windows.Forms.ComboBox cbBoxMaj;
         private MaterialSkin.Controls.MaterialFlatButton btnDataMaj;
+        private System.Windows.Forms.Label label1;
     }
 }
 

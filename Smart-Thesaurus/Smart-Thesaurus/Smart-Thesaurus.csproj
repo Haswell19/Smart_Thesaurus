@@ -35,14 +35,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CronNET, Version=1.1.4939.24773, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\CronNET.1.1.4939.24773\lib\net40\CronNET.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="MaterialSkin">
       <HintPath>lib\MaterialSkin.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="SpiderLogic">
+      <HintPath>C:\Users\vuffrayju\Downloads\SpiderLogic\SpiderLogic\bin\Debug\SpiderLogic.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -66,6 +65,7 @@
     <Compile Include="DataK.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WorkWithWebSite.cs" />
     <EmbeddedResource Include="Affichage.resx">
       <DependentUpon>Affichage.cs</DependentUpon>
     </EmbeddedResource>
@@ -78,7 +78,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

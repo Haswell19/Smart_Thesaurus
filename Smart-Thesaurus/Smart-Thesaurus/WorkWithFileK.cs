@@ -7,12 +7,10 @@ using System.IO;
 using System.Windows.Forms;
 using System.Diagnostics;
 using MaterialSkin.Controls;
-using CronNET;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Xml.Linq;
 using System.Linq;
-
 
 namespace Smart_Thesaurus
 {
@@ -22,7 +20,6 @@ namespace Smart_Thesaurus
     class WorkWithFileK
     {
         //cron class
-
         //le type de mise a joure que l'utlisateur aura choisit
         int intMajType;
         //class du singleton
@@ -190,7 +187,8 @@ namespace Smart_Thesaurus
 
         public void changeUpdateType(int i, string majType)
         {
-            //TODO set cron maj
+            //TODO job avec le cron 
+
         }
 
         /// <summary>
