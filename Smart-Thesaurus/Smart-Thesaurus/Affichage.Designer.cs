@@ -53,8 +53,9 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.materialFlatButton2 = new MaterialSkin.Controls.MaterialFlatButton();
+            this.materialSingleLineTextField1 = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
             this.materialContextMenuStrip1.SuspendLayout();
             this.materialTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -310,15 +311,52 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.label1);
+            this.tabPage2.BackColor = System.Drawing.Color.White;
+            this.tabPage2.Controls.Add(this.materialFlatButton2);
+            this.tabPage2.Controls.Add(this.materialSingleLineTextField1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(764, 432);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Site Web ETML";
-            this.tabPage2.UseVisualStyleBackColor = true;
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
+            // 
+            // materialFlatButton2
+            // 
+            this.materialFlatButton2.AutoSize = true;
+            this.materialFlatButton2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialFlatButton2.Depth = 0;
+            this.materialFlatButton2.Icon = null;
+            this.materialFlatButton2.Location = new System.Drawing.Point(210, 11);
+            this.materialFlatButton2.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialFlatButton2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialFlatButton2.Name = "materialFlatButton2";
+            this.materialFlatButton2.Primary = false;
+            this.materialFlatButton2.Size = new System.Drawing.Size(91, 36);
+            this.materialFlatButton2.TabIndex = 11;
+            this.materialFlatButton2.Text = "Chercher";
+            this.materialFlatButton2.UseVisualStyleBackColor = true;
+            this.materialFlatButton2.Click += new System.EventHandler(this.materialFlatButton2_Click);
+            // 
+            // materialSingleLineTextField1
+            // 
+            this.materialSingleLineTextField1.AccessibleDescription = "";
+            this.materialSingleLineTextField1.Depth = 0;
+            this.materialSingleLineTextField1.Hint = "Entrez votre recherche";
+            this.materialSingleLineTextField1.Location = new System.Drawing.Point(8, 17);
+            this.materialSingleLineTextField1.MaxLength = 32767;
+            this.materialSingleLineTextField1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialSingleLineTextField1.Name = "materialSingleLineTextField1";
+            this.materialSingleLineTextField1.PasswordChar = '\0';
+            this.materialSingleLineTextField1.SelectedText = "";
+            this.materialSingleLineTextField1.SelectionLength = 0;
+            this.materialSingleLineTextField1.SelectionStart = 0;
+            this.materialSingleLineTextField1.Size = new System.Drawing.Size(195, 23);
+            this.materialSingleLineTextField1.TabIndex = 10;
+            this.materialSingleLineTextField1.TabStop = false;
+            this.materialSingleLineTextField1.Tag = "";
+            this.materialSingleLineTextField1.UseSystemPasswordChar = false;
             // 
             // tabPage3
             // 
@@ -329,15 +367,6 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Educanet2";
             this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 3);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
             // 
             // Affichage
             // 
@@ -375,7 +404,6 @@
         private MaterialSkin.Controls.MaterialTabSelector materialTabSelector1;
         private MaterialSkin.Controls.MaterialTabControl materialTabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
         private MaterialSkin.Controls.MaterialListView lstViewK;
         private System.Windows.Forms.ColumnHeader columnHeader2;
@@ -387,7 +415,9 @@
         private MaterialSkin.Controls.MaterialFlatButton materialFlatButton1;
         private System.Windows.Forms.ComboBox cbBoxMaj;
         private MaterialSkin.Controls.MaterialFlatButton btnDataMaj;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private MaterialSkin.Controls.MaterialFlatButton materialFlatButton2;
+        private MaterialSkin.Controls.MaterialSingleLineTextField materialSingleLineTextField1;
     }
 }
 

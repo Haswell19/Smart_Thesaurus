@@ -4,3 +4,13 @@
 *.exe
 
 Smart-Thesaurus/\.vs/Smart-Thesaurus/v14/\.suo
+
+Smart-Thesaurus/Smart-Thesaurus/bin/Debug/\.html
+
+*.html
+
+*.php
+
+*.manifest
+
+*.Cache

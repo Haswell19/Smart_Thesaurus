@@ -58,6 +58,21 @@ namespace Smart_Thesaurus
         }
 
         /// <summary>
+        /// Instancier la classe sans list Box
+        /// </summary>
+        /// <returns></returns>
+        public static WorkWithFileK getInstance()
+        {
+            if (controlerK == null)
+            {
+                //faire un new ControlerFileK et y cherhcer les infos
+                controlerK = new WorkWithFileK();
+            }
+
+            return controlerK;
+        }
+
+        /// <summary>
         /// Chercher un mot dsan tous les fichiers présents
         /// </summary>
         /// <param name="_toSearch"></param>
@@ -402,6 +417,8 @@ namespace Smart_Thesaurus
             Array.Reverse(arr);
             return new string(arr);
         }
+
+        //TODO recherche dans les fichiers
     }
 }
 

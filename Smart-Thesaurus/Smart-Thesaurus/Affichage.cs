@@ -128,6 +128,11 @@ namespace Smart_Thesaurus
 
         private void tabPage2_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void materialFlatButton2_Click(object sender, EventArgs e)
+        {
             WorkWithWebSite work = WorkWithWebSite.getInstance();
             work.DownloadFile();
         }
