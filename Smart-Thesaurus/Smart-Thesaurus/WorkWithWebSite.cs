@@ -11,7 +11,6 @@ namespace Smart_Thesaurus
     class WorkWithWebSite
     {
         static WorkWithWebSite webService;
-        int numberPageDl = 0;
 
         private WorkWithWebSite()
         {
@@ -45,7 +44,7 @@ namespace Smart_Thesaurus
             {
                 
                 Uri myUri = new Uri(correctUrl[i]);
-                client.DownloadFile(correctUrl[i], "page"+i+".html");
+                client.DownloadFileAsync(myUri, "page"+i+".html");
             }
             
         }
