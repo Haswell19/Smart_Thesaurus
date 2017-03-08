@@ -136,5 +136,10 @@ namespace Smart_Thesaurus
             WorkWithWebSite work = WorkWithWebSite.getInstance();
             work.DownloadFile();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //DataFromEducanet login = new DataFromEducanet(textBox1.Text, textBox2.Text);
+        }
     }
 }
