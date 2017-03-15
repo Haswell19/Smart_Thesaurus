@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.materialSingleLineTextField1 = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.searchWord = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.materialFlatButton1 = new MaterialSkin.Controls.MaterialFlatButton();
             this.lstViewK = new MaterialSkin.Controls.MaterialListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -37,22 +37,22 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
-            // materialSingleLineTextField1
+            // searchWord
             // 
-            this.materialSingleLineTextField1.Depth = 0;
-            this.materialSingleLineTextField1.Hint = "";
-            this.materialSingleLineTextField1.Location = new System.Drawing.Point(12, 73);
-            this.materialSingleLineTextField1.MaxLength = 32767;
-            this.materialSingleLineTextField1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialSingleLineTextField1.Name = "materialSingleLineTextField1";
-            this.materialSingleLineTextField1.PasswordChar = '\0';
-            this.materialSingleLineTextField1.SelectedText = "";
-            this.materialSingleLineTextField1.SelectionLength = 0;
-            this.materialSingleLineTextField1.SelectionStart = 0;
-            this.materialSingleLineTextField1.Size = new System.Drawing.Size(689, 23);
-            this.materialSingleLineTextField1.TabIndex = 1;
-            this.materialSingleLineTextField1.TabStop = false;
-            this.materialSingleLineTextField1.UseSystemPasswordChar = false;
+            this.searchWord.Depth = 0;
+            this.searchWord.Hint = "";
+            this.searchWord.Location = new System.Drawing.Point(12, 73);
+            this.searchWord.MaxLength = 32767;
+            this.searchWord.MouseState = MaterialSkin.MouseState.HOVER;
+            this.searchWord.Name = "searchWord";
+            this.searchWord.PasswordChar = '\0';
+            this.searchWord.SelectedText = "";
+            this.searchWord.SelectionLength = 0;
+            this.searchWord.SelectionStart = 0;
+            this.searchWord.Size = new System.Drawing.Size(689, 23);
+            this.searchWord.TabIndex = 1;
+            this.searchWord.TabStop = false;
+            this.searchWord.UseSystemPasswordChar = false;
             // 
             // materialFlatButton1
             // 
@@ -92,6 +92,7 @@
             this.lstViewK.TabIndex = 6;
             this.lstViewK.UseCompatibleStateImageBehavior = false;
             this.lstViewK.View = System.Windows.Forms.View.Details;
+            this.lstViewK.DoubleClick += new System.EventHandler(this.lstViewK_DoubleClick);
             // 
             // columnHeader1
             // 
@@ -120,7 +121,7 @@
             this.ClientSize = new System.Drawing.Size(713, 505);
             this.Controls.Add(this.lstViewK);
             this.Controls.Add(this.materialFlatButton1);
-            this.Controls.Add(this.materialSingleLineTextField1);
+            this.Controls.Add(this.searchWord);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -130,7 +131,7 @@
         }
 
         #endregion
-        private MaterialSkin.Controls.MaterialSingleLineTextField materialSingleLineTextField1;
+        private MaterialSkin.Controls.MaterialSingleLineTextField searchWord;
         private MaterialSkin.Controls.MaterialFlatButton materialFlatButton1;
         private MaterialSkin.Controls.MaterialListView lstViewK;
         private System.Windows.Forms.ColumnHeader columnHeader1;

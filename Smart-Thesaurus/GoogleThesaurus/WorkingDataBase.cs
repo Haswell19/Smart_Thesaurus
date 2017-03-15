@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,9 +42,8 @@ namespace GoogleThesaurus
         /// </summary>
         public void startConneciton()
         {
-            if (myConnexion != null)
-                killConnection();
-            myConnexion = new SQLiteConnection("Data Source=" + strDataBaseName + ".sqlite;Version=3;");
+            //if (!File.Exists(strDataBaseName + ".sqlite"))
+                myConnexion = new SQLiteConnection("Data Source=" + strDataBaseName + ".sqlite;Version=3;");
             myConnexion.Open();
         }
 
@@ -72,12 +72,10 @@ namespace GoogleThesaurus
             toExectue.ExecuteNonQuery();    
         }
 
-        public void getData(string table)
+        public SQLiteCommand getData(string table)
         {
             string sqlRequest = "select * from " + table;
-            SQLiteCommand toExecute = new SQLiteCommand(sqlRequest, myConnexion);
-            SQLiteDataReader reader = toExecute.ExecuteReader();
-
+            return new SQLiteCommand(sqlRequest, myConnexion);
         }
     }
 }

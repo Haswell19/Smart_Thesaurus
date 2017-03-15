@@ -14,6 +14,7 @@ namespace GoogleThesaurus
 {
     public partial class Form1 : MaterialForm
     {
+        SearchOnFileK K;
         public Form1()
         {
             InitializeComponent();
@@ -31,14 +32,25 @@ namespace GoogleThesaurus
 
         private void materialFlatButton1_Click(object sender, EventArgs e)
         {
-            WorkingDataBase db;
+            /*WorkingDataBase db;
             db = WorkingDataBase.getInstance("myDB");
             db.createDataBase();
             db.startConneciton();
             db.creatInfrastructure("create table firstTable (nom text)");
             db.insertData("firstTable", "nom", "'salut'");
-            db.getData("firstTable");
+            db.getData("firstTable");*/
 
+            if(K == null)
+                K = SearchOnFileK.getInstance();
+
+            K.storeToDB();
+            ShowInfos.getInstance().showKSearch(lstViewK, "t_files",searchWord.Text);
+        }
+
+        private void lstViewK_DoubleClick(object sender, EventArgs e)
+        {
+            MaterialListView item = (MaterialListView)sender;
+            K.openFile(item.SelectedItems[0].SubItems[1].Text + item.SelectedItems[0].SubItems[2].Text+ item.SelectedItems[0].SubItems[3].Text);
         }
     }
 }
