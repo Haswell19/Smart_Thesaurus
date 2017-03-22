@@ -34,7 +34,8 @@ namespace GoogleThesaurus
         /// </summary>
         public void createDataBase()
         {
-            SQLiteConnection.CreateFile(strDataBaseName+".sqlite");
+            if (!File.Exists(strDataBaseName + ".sqlite"))
+                SQLiteConnection.CreateFile(strDataBaseName+".sqlite");
         }
 
         /// <summary>
@@ -42,8 +43,7 @@ namespace GoogleThesaurus
         /// </summary>
         public void startConneciton()
         {
-            //if (!File.Exists(strDataBaseName + ".sqlite"))
-                myConnexion = new SQLiteConnection("Data Source=" + strDataBaseName + ".sqlite;Version=3;");
+            myConnexion = new SQLiteConnection("Data Source=" + strDataBaseName + ".sqlite;Version=3;");
             myConnexion.Open();
         }
 
@@ -53,6 +53,19 @@ namespace GoogleThesaurus
         public void killConnection()
         {
             myConnexion.Close();
+        }
+
+        /// <summary>
+        /// Supprimer toutes les données d'une table afin d'avoir les données à jour
+        /// par exemple si des fichiers sont supprimer ou ne pas avoir deux fois 
+        /// la même entrée
+        /// </summary>
+        /// <param name="table">nom de la table</param>
+        public void deleteAllTableData(string table)
+        {
+            string sqlRequest = "delete from " + table+" WHERE 1=1";
+            SQLiteCommand sqlDelete = new SQLiteCommand(sqlRequest, myConnexion);
+            sqlDelete.ExecuteNonQuery();
         }
 
         public void creatInfrastructure(string tableToCreate)
@@ -76,6 +89,48 @@ namespace GoogleThesaurus
         {
             string sqlRequest = "select * from " + table;
             return new SQLiteCommand(sqlRequest, myConnexion);
+        }
+
+        public void createInterfaceAndStoreData()
+        {
+            createDataBase();
+            startConneciton();
+            //DATA FROM K
+            //tester si la table existe
+            try
+            {
+                creatInfrastructure("create table t_files (path text,name text,extention text)");
+            }
+            catch
+            {
+
+            }
+            //vider la talbe pour avoir les nouvelles données
+            deleteAllTableData("t_files");
+            //ajouter a la table les infomrations des fichiers
+            foreach (string l in SearchOnFileK.getInstance().getAllFiles("*"))
+            {
+                insertData("t_files", "path, name, extention", "'" + SearchOnFileK.getInstance().getPath(l) + "','" + SearchOnFileK.getInstance().getFileName(l) + "','." + SearchOnFileK.getInstance().getExtention(l) + "'");
+            }
+            //END DATA FROM K
+            //DATA FROM WEB
+            //tester si la table existe
+            try
+            {
+                creatInfrastructure("create table t_url (path text)");
+            }
+            catch
+            {
+
+            }
+            //vider la talbe pour avoir les nouvelles données
+            deleteAllTableData("t_url");
+            //ajouter a la table les infomrations des fichiers
+            foreach (string l in WebSiteSearch.getInstance().getAllUrls())
+            {
+                insertData("t_url", "path", "'" + l + "'");
+            }
+            //END DATA FROM WEB
         }
     }
 }

@@ -45,5 +45,32 @@ namespace GoogleThesaurus
                 lstView.Items.AddRange(lstViewItem.ToArray());
             };
         }
+
+        public void showWebSearch(MaterialListView lstView, string table, string toSearch)
+        {
+            List<ListViewItem> lstViewItem = new List<ListViewItem>();
+            List<string> contentWord = new List<string>();
+            using (SQLiteDataReader reader = WorkingDataBase.getInstance("dataK").getData(table).ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    if (WebSiteSearch.getInstance().searchOnWeb(toSearch, reader.GetString(0)))
+                    {
+                        contentWord.Add(reader.GetString(0));
+                    }
+                }
+            };
+
+            foreach (string url in contentWord)
+            {
+                ListViewItem item = new ListViewItem("");
+                item.SubItems.Add(url);
+                item.SubItems.Add(toSearch);
+                item.SubItems.Add("Site Web");
+                lstViewItem.Add(item);
+            }
+            lstView.Items.AddRange(lstViewItem.ToArray());
+
+        }
     }
 }

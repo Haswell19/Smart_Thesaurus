@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,6 +16,7 @@ namespace GoogleThesaurus
     public partial class Form1 : MaterialForm
     {
         SearchOnFileK K;
+        const string DBNAME = "dataK";
         public Form1()
         {
             InitializeComponent();
@@ -27,30 +29,35 @@ namespace GoogleThesaurus
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            WorkingDataBase.getInstance(DBNAME).createInterfaceAndStoreData();
         }
 
         private void materialFlatButton1_Click(object sender, EventArgs e)
         {
-            /*WorkingDataBase db;
-            db = WorkingDataBase.getInstance("myDB");
-            db.createDataBase();
-            db.startConneciton();
-            db.creatInfrastructure("create table firstTable (nom text)");
-            db.insertData("firstTable", "nom", "'salut'");
-            db.getData("firstTable");*/
+            ShowInfos.getInstance().showKSearch(lstViewK,"t_files", searchWord.Text);
+            Thread myThread = new Thread(new ThreadStart(creatThread));
+            myThread.Start();
+            ShowInfos.getInstance().showWebSearch(lstViewK,"t_url", searchWord.Text);
 
-            if(K == null)
-                K = SearchOnFileK.getInstance();
+        }
 
-            K.storeToDB();
-            ShowInfos.getInstance().showKSearch(lstViewK, "t_files",searchWord.Text);
+        public void creatThread()
+        {
+            
         }
 
         private void lstViewK_DoubleClick(object sender, EventArgs e)
         {
             MaterialListView item = (MaterialListView)sender;
-            K.openFile(item.SelectedItems[0].SubItems[1].Text + item.SelectedItems[0].SubItems[2].Text+ item.SelectedItems[0].SubItems[3].Text);
+
+            if (item.SelectedItems[0].SubItems[3].Text != "Site Web")
+            {
+                K.openFile(item.SelectedItems[0].SubItems[1].Text + item.SelectedItems[0].SubItems[2].Text + item.SelectedItems[0].SubItems[3].Text);
+            }
+            else
+            {
+                System.Diagnostics.Process.Start(item.SelectedItems[0].SubItems[1].Text);
+            }
         }
     }
 }

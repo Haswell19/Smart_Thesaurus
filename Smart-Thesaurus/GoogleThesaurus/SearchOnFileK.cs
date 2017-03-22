@@ -1,12 +1,6 @@
-﻿using MaterialSkin.Controls;
-using System;
-using System.Collections.Generic;
-using System.Data.SQLite;
+﻿using System;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GoogleThesaurus
 {
@@ -40,37 +34,11 @@ namespace GoogleThesaurus
         }
 
         /// <summary>
-        /// Stocker les fichiers dans la DB
-        /// </summary>
-        public void storeToDB()
-        {
-            //mettre en place l'environnement
-            dbWork.createDataBase();
-            dbWork.startConneciton();
-
-            //tester si la table existe
-            try
-            {
-                dbWork.creatInfrastructure("create table t_files (path text,name text,extention text)");
-            }
-            catch
-            {
-                
-            }
-
-            //ajouter a la table les infomrations des fichiers
-            foreach (string l in getAllFiles("*"))
-            {
-                dbWork.insertData("t_files", "path, name, extention", "'" + getPath(l) + "','" + getFileName(l) + "','." + getExtention(l) + "'");
-            }
-        }
-
-        /// <summary>
         /// Enlever le chemin et l'extension du fichier
         /// </summary>
         /// <param name="name">la string avec le chemin et l'extention</param>
         /// <returns>nom du fichier</returns>
-        private string getFileName(string name)
+        public string getFileName(string name)
         {
             string[] str;
             //enlever l'extenton du fichier s'il en a une
@@ -93,7 +61,7 @@ namespace GoogleThesaurus
         /// </summary>
         /// <param name="file">la string avec le nom</param>
         /// <returns>seulement l'extention</returns>
-        private string getExtention(string file)
+        public string getExtention(string file)
         {
             //tester s'il contient une extention
             if (file.Contains("."))
@@ -131,7 +99,7 @@ namespace GoogleThesaurus
             return new string(arr);
         }
 
-        private string getPath(string file)
+        public string getPath(string file)
         {
             string path = "";
             string extention = getExtention(file);

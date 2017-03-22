@@ -85,6 +85,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchOnFileK.cs" />
     <Compile Include="ShowInfos.cs" />
+    <Compile Include="WebSiteSearch.cs" />
     <Compile Include="WorkingDataBase.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
