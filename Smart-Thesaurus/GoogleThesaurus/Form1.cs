@@ -34,16 +34,13 @@ namespace GoogleThesaurus
 
         private void materialFlatButton1_Click(object sender, EventArgs e)
         {
-            ShowInfos.getInstance().showKSearch(lstViewK,"t_files", searchWord.Text);
-            Thread myThread = new Thread(new ThreadStart(creatThread));
-            myThread.Start();
-            ShowInfos.getInstance().showWebSearch(lstViewK,"t_url", searchWord.Text);
+            if (lstViewK.Items.Count != 0)
+            {
+                lstViewK.Items.Clear();
+            }
+            ShowInfos.getInstance().showKSearch(progressBar, lstViewK,"t_files", searchWord.Text);
+            ShowInfos.getInstance().showWebSearch(progressBar, lstViewK,"t_url", searchWord.Text);
 
-        }
-
-        public void creatThread()
-        {
-            
         }
 
         private void lstViewK_DoubleClick(object sender, EventArgs e)

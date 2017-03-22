@@ -35,6 +35,7 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.progressBar = new MaterialSkin.Controls.MaterialProgressBar();
             this.SuspendLayout();
             // 
             // searchWord
@@ -114,11 +115,21 @@
             this.columnHeader3.Text = "Type";
             this.columnHeader3.Width = 105;
             // 
+            // progressBar
+            // 
+            this.progressBar.Depth = 0;
+            this.progressBar.Location = new System.Drawing.Point(13, 119);
+            this.progressBar.MouseState = MaterialSkin.MouseState.HOVER;
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(581, 5);
+            this.progressBar.TabIndex = 7;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(713, 505);
+            this.Controls.Add(this.progressBar);
             this.Controls.Add(this.lstViewK);
             this.Controls.Add(this.materialFlatButton1);
             this.Controls.Add(this.searchWord);
@@ -139,6 +150,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader3;
+        private MaterialSkin.Controls.MaterialProgressBar progressBar;
     }
 }
 
