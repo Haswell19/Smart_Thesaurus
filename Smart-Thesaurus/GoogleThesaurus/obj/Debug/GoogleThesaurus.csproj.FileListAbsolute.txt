@@ -13,8 +13,8 @@ F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus\GoogleThesaurus\bin\Debug\E
 F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus\GoogleThesaurus\bin\Debug\SpiderLogic.pdb
 F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus\GoogleThesaurus\bin\Debug\System.Data.SQLite.xml
 F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus\GoogleThesaurus\obj\Debug\GoogleThesaurus.csprojResolveAssemblyReference.cache
-F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus\GoogleThesaurus\obj\Debug\GoogleThesaurus.Form1.resources
 F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus\GoogleThesaurus\obj\Debug\GoogleThesaurus.Properties.Resources.resources
 F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus\GoogleThesaurus\obj\Debug\GoogleThesaurus.csproj.GenerateResource.Cache
 F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus\GoogleThesaurus\obj\Debug\GoogleThesaurus.exe
 F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus\GoogleThesaurus\obj\Debug\GoogleThesaurus.pdb
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus\GoogleThesaurus\obj\Debug\GoogleThesaurus.SearchView.resources
