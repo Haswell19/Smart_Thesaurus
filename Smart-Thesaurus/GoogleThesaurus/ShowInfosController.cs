@@ -62,10 +62,8 @@ namespace GoogleThesaurus
                         item.SubItems.Add(reader.GetString(1));
                         item.SubItems.Add(reader.GetString(2));
                         lstViewItem.Add(item);
-                    }
-
-                    //rechercher dasn un fichier si le mot est présent
-                    if (WebSiteModel.getInstance().searchOnWeb(toSearch, reader.GetString(0)+""+reader.GetString(1)+""+reader.GetString(2)))
+                    }//rechercher dasn un fichier si le mot est présent
+                    else if (WebSiteModel.getInstance().searchOnWeb(toSearch, reader.GetString(0)+""+reader.GetString(1)+""+reader.GetString(2)))
                     {
                         //ajouter dans un item a afficher dans la listview
                         ListViewItem item = new ListViewItem("");
@@ -102,7 +100,7 @@ namespace GoogleThesaurus
                 {
                     length++;
                 }
-                progressbar.Maximum = length;
+                progressbar.Maximum = reader.StepCount;
                 progressbar.Value = 0;
             };
 

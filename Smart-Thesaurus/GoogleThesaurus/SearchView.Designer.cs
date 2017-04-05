@@ -37,6 +37,9 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.progressBar = new MaterialSkin.Controls.MaterialProgressBar();
+            this.etml = new System.Windows.Forms.CheckBox();
+            this.educanet = new System.Windows.Forms.CheckBox();
+            this.temp = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // searchWord
@@ -85,7 +88,6 @@
             this.lstViewK.Depth = 0;
             this.lstViewK.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
             this.lstViewK.FullRowSelect = true;
-            this.lstViewK.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lstViewK.Location = new System.Drawing.Point(12, 150);
             this.lstViewK.MouseLocation = new System.Drawing.Point(-1, -1);
             this.lstViewK.MouseState = MaterialSkin.MouseState.OUT;
@@ -109,22 +111,52 @@
             // 
             // columnHeader4
             // 
-            this.columnHeader4.Text = "Nom";
+            this.columnHeader4.Text = "Nom/Recherche";
             this.columnHeader4.Width = 209;
             // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "Type";
-            this.columnHeader3.Width = 105;
+            this.columnHeader3.Width = 111;
             // 
             // progressBar
             // 
             this.progressBar.Depth = 0;
-            this.progressBar.Location = new System.Drawing.Point(13, 119);
+            this.progressBar.Location = new System.Drawing.Point(141, 124);
             this.progressBar.MouseState = MaterialSkin.MouseState.HOVER;
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(581, 5);
+            this.progressBar.Size = new System.Drawing.Size(453, 5);
             this.progressBar.TabIndex = 7;
+            // 
+            // etml
+            // 
+            this.etml.AutoSize = true;
+            this.etml.Location = new System.Drawing.Point(71, 102);
+            this.etml.Name = "etml";
+            this.etml.Size = new System.Drawing.Size(60, 17);
+            this.etml.TabIndex = 8;
+            this.etml.Text = "etml.ch";
+            this.etml.UseVisualStyleBackColor = true;
+            // 
+            // educanet
+            // 
+            this.educanet.AutoSize = true;
+            this.educanet.Location = new System.Drawing.Point(12, 124);
+            this.educanet.Name = "educanet";
+            this.educanet.Size = new System.Drawing.Size(120, 17);
+            this.educanet.TabIndex = 9;
+            this.educanet.Text = "Classeur educanet2";
+            this.educanet.UseVisualStyleBackColor = true;
+            // 
+            // temp
+            // 
+            this.temp.AutoSize = true;
+            this.temp.Location = new System.Drawing.Point(12, 102);
+            this.temp.Name = "temp";
+            this.temp.Size = new System.Drawing.Size(53, 17);
+            this.temp.TabIndex = 10;
+            this.temp.Text = "Temp";
+            this.temp.UseVisualStyleBackColor = true;
             // 
             // SearchView
             // 
@@ -132,6 +164,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(713, 505);
+            this.Controls.Add(this.temp);
+            this.Controls.Add(this.educanet);
+            this.Controls.Add(this.etml);
             this.Controls.Add(this.progressBar);
             this.Controls.Add(this.lstViewK);
             this.Controls.Add(this.btnSearch);
@@ -157,6 +192,9 @@
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private MaterialSkin.Controls.MaterialProgressBar progressBar;
+        private System.Windows.Forms.CheckBox etml;
+        private System.Windows.Forms.CheckBox educanet;
+        private System.Windows.Forms.CheckBox temp;
     }
 }
 

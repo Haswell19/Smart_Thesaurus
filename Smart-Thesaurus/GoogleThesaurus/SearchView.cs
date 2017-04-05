@@ -36,8 +36,12 @@ namespace GoogleThesaurus
 
         }
 
+        /// <summary>
+        /// Lancer en multiThread la tâche cron
+        /// </summary>
         private void CronWork()
         {
+            //créer le tache cron
             Cron cron = new Cron();
             cron.start();
         }
@@ -50,9 +54,14 @@ namespace GoogleThesaurus
                 lstViewK.Items.Clear();
             }
             //rechercher ce que l'utilisateur désire dans le K et le site Web
-            ShowInfosController.getInstance().showKSearch(progressBar, lstViewK, "t_files", searchWord.Text);
-            ShowInfosController.getInstance().showWebSearch(progressBar, lstViewK, "t_url", searchWord.Text);
-
+            if (temp.Checked)
+            {
+                ShowInfosController.getInstance().showKSearch(progressBar, lstViewK, "t_files", searchWord.Text);
+            }
+            if (etml.Checked)
+            {
+                ShowInfosController.getInstance().showWebSearch(progressBar, lstViewK, "t_url", searchWord.Text);
+            }   
         }
 
         private void lstViewK_DoubleClick(object sender, EventArgs e)
@@ -73,9 +82,16 @@ namespace GoogleThesaurus
             }
         }
 
+        /// <summary>
+        /// Action quand la form est fermée
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SearchView_FormClosed(object sender, System.Windows.Forms.FormClosedEventArgs e)
         {
+            //arreter le thread de sauvegarde dasn la bdd
             myThread.Abort();
         }
+
     }
 }

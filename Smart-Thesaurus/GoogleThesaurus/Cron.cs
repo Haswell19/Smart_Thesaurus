@@ -4,6 +4,10 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading;
 
+/// <summary>
+/// https://www.codeproject.com/Articles/10992/Implementing-a-small-Cron-service-in-C
+/// Code de base
+/// </summary>
 namespace GoogleThesaurus
 {
     /// <summary>
