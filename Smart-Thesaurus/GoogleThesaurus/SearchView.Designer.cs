@@ -172,6 +172,7 @@
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.searchWord);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "SearchView";
             this.Sizable = false;
             this.Text = "GoogleThesaurus";

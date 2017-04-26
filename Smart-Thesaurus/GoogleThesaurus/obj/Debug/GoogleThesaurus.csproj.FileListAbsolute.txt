@@ -3,7 +3,6 @@ F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus\GoogleThesaurus\bin\Debug\G
 F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus\GoogleThesaurus\bin\Debug\GoogleThesaurus.pdb
 F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus\GoogleThesaurus\bin\Debug\EntityFramework.dll
 F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus\GoogleThesaurus\bin\Debug\EntityFramework.SqlServer.dll
-F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus\GoogleThesaurus\bin\Debug\MaterialSkin.dll
 F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus\GoogleThesaurus\bin\Debug\SpiderLogic.dll
 F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus\GoogleThesaurus\bin\Debug\System.Data.SQLite.dll
 F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus\GoogleThesaurus\bin\Debug\System.Data.SQLite.EF6.dll
