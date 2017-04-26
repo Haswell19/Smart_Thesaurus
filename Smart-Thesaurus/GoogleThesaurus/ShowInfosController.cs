@@ -9,6 +9,10 @@ namespace GoogleThesaurus
     class ShowInfosController
     {
         static ShowInfosController showInfos;
+        static SearchView formToModify;
+        private delegate void incrementPB();
+        private delegate void maxPB(int i);
+        private delegate void addList(List<string> lst,string searched);
 
         private ShowInfosController(){}
 
@@ -18,6 +22,14 @@ namespace GoogleThesaurus
         /// <returns>l'entité de ShowInfoController</returns>
         public static ShowInfosController getInstance()
         {
+            if (showInfos == null)
+                showInfos = new ShowInfosController();
+            return showInfos;
+        }
+
+        public static ShowInfosController getInstance(SearchView form)
+        {
+            formToModify = form;
             if (showInfos == null)
                 showInfos = new ShowInfosController();
             return showInfos;
@@ -100,8 +112,8 @@ namespace GoogleThesaurus
                 {
                     length++;
                 }
-                progressbar.Maximum = reader.StepCount;
-                progressbar.Value = 0;
+                //modifier la progessbar depuisl e thread princiapl
+                formToModify.Invoke(new maxPB(formToModify.addMaxProgressBar), reader.StepCount);
             };
 
             //recupérer les données
@@ -109,7 +121,9 @@ namespace GoogleThesaurus
             {
                 while (reader.Read())
                 {
-                    progressbar.Value += 1;
+                    //modifier la progessbar depuisl e thread princiapl
+                    formToModify.Invoke(new incrementPB(formToModify.incrementProgressBar));
+                    
                     //faire le recherche sur les pages et ajouter a la liste l'url de la page qui contient le mot cherché
                     if (WebSiteModel.getInstance().searchOnWeb(toSearch, reader.GetString(0)))
                     {
@@ -117,18 +131,8 @@ namespace GoogleThesaurus
                     }
                 }
             };
-
-            //créer un item pour listview avec chaque site trouvé
-            foreach (string url in contentWord)
-            {
-                ListViewItem item = new ListViewItem("");
-                item.SubItems.Add(url);
-                item.SubItems.Add(toSearch);
-                item.SubItems.Add("Site Web");
-                lstViewItem.Add(item);
-            }
-            //ajoute la list à l'affichage
-            lstView.Items.AddRange(lstViewItem.ToArray());
+            //afficher les résultat de la recherche dans la listeview depuis le thread principal
+            formToModify.Invoke(new addList(formToModify.refreshList), contentWord , toSearch);
 
         }
     }

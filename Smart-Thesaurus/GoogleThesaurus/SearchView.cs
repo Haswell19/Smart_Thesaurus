@@ -1,7 +1,9 @@
 ﻿using MaterialSkin;
 using MaterialSkin.Controls;
 using System;
+using System.Collections.Generic;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace GoogleThesaurus
 {
@@ -60,8 +62,14 @@ namespace GoogleThesaurus
             }
             if (etml.Checked)
             {
-                ShowInfosController.getInstance().showWebSearch(progressBar, lstViewK, "t_url", searchWord.Text);
-            }   
+                Thread thread = new Thread(() => ShowInfosController.getInstance(this).showWebSearch(progressBar, lstViewK, "t_url", searchWord.Text));
+                thread.Start();
+            }
+            if (educanet.Checked)
+            {
+               //TODO chercher les fichiers dans le classseur educanet
+            }
+
         }
 
         private void lstViewK_DoubleClick(object sender, EventArgs e)
@@ -91,6 +99,45 @@ namespace GoogleThesaurus
         {
             //arreter le thread de sauvegarde dasn la bdd
             myThread.Abort();
+        }
+
+        /// <summary>
+        /// Changer la taille max de la progressbar(pour les autres thread)
+        /// </summary>
+        /// <param name="max">valeur max de la progressbar</param>
+        public void addMaxProgressBar(int max)
+        {
+            progressBar.Maximum = max;
+            progressBar.Value = 0;
+        }
+
+        /// <summary>
+        /// Incrementer la progressBar
+        /// </summary>
+        public void incrementProgressBar()
+        {
+            progressBar.Value++;
+        }
+
+        /// <summary>
+        /// Charger les données dans la liste
+        /// </summary>
+        /// <param name="lst">liste de données a afficher</param>
+        /// <param name="toSearch">le mot recherhcer</param>
+        public void refreshList(List<string> lst,string toSearch)
+        {
+            List<ListViewItem> lstViewItem = new List<ListViewItem>();
+            //créer un item pour listview avec chaque site trouvé
+            foreach (string url in lst)
+            {
+                ListViewItem item = new ListViewItem("");
+                item.SubItems.Add(url);
+                item.SubItems.Add(toSearch);
+                item.SubItems.Add("Site Web");
+                lstViewItem.Add(item);
+            }
+            //ajoute la list à l'affichage
+            lstViewK.Items.AddRange(lstViewItem.ToArray());
         }
 
     }

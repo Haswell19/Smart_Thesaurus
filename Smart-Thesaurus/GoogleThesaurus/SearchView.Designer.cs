@@ -88,6 +88,7 @@
             this.lstViewK.Depth = 0;
             this.lstViewK.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
             this.lstViewK.FullRowSelect = true;
+            this.lstViewK.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lstViewK.Location = new System.Drawing.Point(12, 150);
             this.lstViewK.MouseLocation = new System.Drawing.Point(-1, -1);
             this.lstViewK.MouseState = MaterialSkin.MouseState.OUT;
@@ -117,7 +118,7 @@
             // columnHeader3
             // 
             this.columnHeader3.Text = "Type";
-            this.columnHeader3.Width = 111;
+            this.columnHeader3.Width = 117;
             // 
             // progressBar
             // 

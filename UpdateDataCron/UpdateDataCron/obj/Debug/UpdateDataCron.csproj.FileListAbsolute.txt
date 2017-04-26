@@ -29,3 +29,6 @@ C:\Users\vuffrayju\Desktop\Dossier\UpdateDataCron\UpdateDataCron\bin\Debug\Entit
 C:\Users\vuffrayju\Desktop\Dossier\UpdateDataCron\UpdateDataCron\bin\Debug\SpiderLogic.pdb
 C:\Users\vuffrayju\Desktop\Dossier\UpdateDataCron\UpdateDataCron\bin\Debug\System.Data.SQLite.xml
 C:\Users\vuffrayju\Desktop\Dossier\UpdateDataCron\UpdateDataCron\obj\Debug\UpdateDataCron.csprojResolveAssemblyReference.cache
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\UpdateDataCron\UpdateDataCron\bin\Debug\UpdateDataCron.exe.config
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\UpdateDataCron\UpdateDataCron\obj\Debug\UpdateDataCron.exe
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\UpdateDataCron\UpdateDataCron\obj\Debug\UpdateDataCron.pdb
