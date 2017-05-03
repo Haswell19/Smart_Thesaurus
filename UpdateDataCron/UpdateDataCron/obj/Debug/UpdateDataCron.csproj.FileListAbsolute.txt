@@ -32,3 +32,15 @@ C:\Users\vuffrayju\Desktop\Dossier\UpdateDataCron\UpdateDataCron\obj\Debug\Updat
 F:\Cours\GitHub\P_oo\Smart_Thesaurus\UpdateDataCron\UpdateDataCron\bin\Debug\UpdateDataCron.exe.config
 F:\Cours\GitHub\P_oo\Smart_Thesaurus\UpdateDataCron\UpdateDataCron\obj\Debug\UpdateDataCron.exe
 F:\Cours\GitHub\P_oo\Smart_Thesaurus\UpdateDataCron\UpdateDataCron\obj\Debug\UpdateDataCron.pdb
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\UpdateDataCron\UpdateDataCron\bin\Debug\UpdateDataCron.exe
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\UpdateDataCron\UpdateDataCron\bin\Debug\UpdateDataCron.pdb
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\UpdateDataCron\UpdateDataCron\bin\Debug\EntityFramework.dll
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\UpdateDataCron\UpdateDataCron\bin\Debug\EntityFramework.SqlServer.dll
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\UpdateDataCron\UpdateDataCron\bin\Debug\System.Data.SQLite.dll
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\UpdateDataCron\UpdateDataCron\bin\Debug\System.Data.SQLite.EF6.dll
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\UpdateDataCron\UpdateDataCron\bin\Debug\System.Data.SQLite.Linq.dll
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\UpdateDataCron\UpdateDataCron\bin\Debug\EntityFramework.xml
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\UpdateDataCron\UpdateDataCron\bin\Debug\EntityFramework.SqlServer.xml
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\UpdateDataCron\UpdateDataCron\bin\Debug\SpiderLogic.pdb
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\UpdateDataCron\UpdateDataCron\bin\Debug\System.Data.SQLite.xml
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\UpdateDataCron\UpdateDataCron\obj\Debug\UpdateDataCron.csprojResolveAssemblyReference.cache

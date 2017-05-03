@@ -1,0 +1,2 @@
+# DoThis every hour
+* * * * * UpdateDataCron.exe

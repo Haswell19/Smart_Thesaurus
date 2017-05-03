@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SQLite;
 using System.IO;
 using UpdateDataCron;
+using System.Text.RegularExpressions;
 
 namespace UpdateDataCron
 {
@@ -173,6 +174,8 @@ namespace UpdateDataCron
                 creatInfrastructure("create table t_wordK (wordid  INTEGER PRIMARY KEY AUTOINCREMENT,word text,wordToFile INTEGER,  FOREIGN KEY(wordToFile) REFERENCES t_files(fileid))");
             }
             catch { }
+            //vider la talbe pour avoir les nouvelles données
+            deleteAllTableData("t_wordK");
             //ajouter les données
             using (SQLiteDataReader reader = DataBaseModel.getInstance("dataK").getData("t_files").ExecuteReader())
             {
@@ -191,18 +194,76 @@ namespace UpdateDataCron
                             {
                                 word[i] = word[i].Replace(@"\", @"\\");
                             }
-                            insertData("t_wordK", "word,wordToFile", "'" + word[i] + "',(SELECT fileid from t_files where name = '" + reader.GetString(2) + "')");
+                            if (word[i].Contains(@"'"))
+                            {
+                                word[i] = word[i].Replace(@"'", @"");
+                            }
+                            try
+                            {
+                                insertData("t_wordK", "word,wordToFile", "'" + word[i] + "',(SELECT fileid from t_files where name = '" + reader.GetString(2) + "')");
+                            }
+                            catch
+                            { }
                         }
-                        /*INSERT INTO bar (description, foo_id) VALUES
-                            ('testing',     (SELECT id from foo WHERE type = 'blue') ),
-                            ('another row', (SELECT id from foo WHERE type = 'red' ) );
-                            
-                     AND WHERE extention ='" + reader.GetString(3) + "'*/
 
                     }
 
                 }
             }
+            //END WORD FROM FILES
+            //WORD FORM WEB
+            //tester si la table existe ou pas
+            try
+            {
+                creatInfrastructure("create table t_wordSite (wordid  INTEGER PRIMARY KEY AUTOINCREMENT,word text,wordToURL INTEGER,  FOREIGN KEY(wordToURL) REFERENCES t_url(webid))");
+            }
+            catch { }
+            //vider la talbe pour avoir les nouvelles données
+            deleteAllTableData("t_wordSite");
+            //ajouter les données
+            using (SQLiteDataReader reader = DataBaseModel.getInstance("dataK").getData("t_url").ExecuteReader())
+            {
+                string fileData;
+                while (reader.Read())
+                {
+                    try
+                    {
+                        //lire l'url
+                        using (System.Net.WebClient webClient = new System.Net.WebClient())
+                        fileData = webClient.DownloadString(reader.GetString(1));
+                    fileData = Regex.Replace(fileData, "<.*?>", string.Empty);
+                        fileData = deleteHTMLchar(fileData);
+
+                        insertData("t_wordSite", "word,wordToUrl", "'"+fileData+"',(SELECT webid from t_url where path = '" + reader.GetString(1) + "')");
+                     }
+                    catch
+                    { }
+                }
+
+            }
+
+        }
+
+        public string deleteHTMLchar(string toModify)
+        {
+            if (toModify.Contains("\t"))
+            {
+                toModify = toModify.Replace("\t", "");
+            }
+            if (toModify.Contains("\n"))
+            {
+                toModify = toModify.Replace("\n", "");
+            }
+            if (toModify.Contains("\r"))
+            {
+                toModify = toModify.Replace("\r", "");
+            }
+            if (toModify.Contains("'"))
+            {
+                toModify = toModify.Replace("'", "");
+            }
+            return toModify;
         }
     }
+
 }
