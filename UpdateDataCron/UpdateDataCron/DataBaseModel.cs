@@ -184,39 +184,44 @@ namespace UpdateDataCron
                 {
                     //lire le fichier
                     using (System.Net.WebClient webClient = new System.Net.WebClient())
-                        fileData = webClient.DownloadString(reader.GetString(1) + reader.GetString(2) + reader.GetString(3));
-                    string[] word = fileData.Split(' ');
-                    for (int i = 0; i < word.Length; i++)
-                    {
-                        if (word[i] != "")
-                        {
-                            if (word[i].Contains(@"\"))
-                            {
-                                word[i] = word[i].Replace(@"\", @"\\");
-                            }
-                            if (word[i].Contains(@"'"))
-                            {
-                                word[i] = word[i].Replace(@"'", @"");
-                            }
-                            try
-                            {
-                                insertData("t_wordK", "word,wordToFile", "'" + word[i] + "',(SELECT fileid from t_files where name = '" + reader.GetString(2) + "')");
-                            }
-                            catch
-                            { }
-                        }
+                        
+                            fileData = webClient.DownloadString(reader.GetString(1) + reader.GetString(2) + reader.GetString(3));
 
+                            string[] word = fileData.Split(' ');
+                            for (int i = 0; i < word.Length; i++)
+                            {
+                                if (word[i] != "")
+                                {
+                                    if (word[i].Contains(@"\"))
+                                    {
+                                        word[i] = word[i].Replace(@"\", @"\\");
+                                    }
+                                    if (word[i].Contains(@"'"))
+                                    {
+                                        word[i] = word[i].Replace(@"'", @"");
+                                    }
+                                }
+                        try
+                        {
+                            insertData("t_wordK", "word,wordToFile", "'" + word[i] + "',(SELECT fileid from t_files where name = '" + reader.GetString(2) + "')");
+                            }
+                        catch
+                        { }
                     }
 
                 }
+
             }
+
+        
+    
             //END WORD FROM FILES
             //WORD FORM WEB
             //tester si la table existe ou pas
             try
             {
                 creatInfrastructure("create table t_wordSite (wordid  INTEGER PRIMARY KEY AUTOINCREMENT,word text,wordToURL INTEGER,  FOREIGN KEY(wordToURL) REFERENCES t_url(webid))");
-            }
+}
             catch { }
             //vider la talbe pour avoir les nouvelles données
             deleteAllTableData("t_wordSite");
@@ -245,25 +250,25 @@ namespace UpdateDataCron
         }
 
         public string deleteHTMLchar(string toModify)
-        {
-            if (toModify.Contains("\t"))
-            {
-                toModify = toModify.Replace("\t", "");
-            }
-            if (toModify.Contains("\n"))
-            {
-                toModify = toModify.Replace("\n", "");
-            }
-            if (toModify.Contains("\r"))
-            {
-                toModify = toModify.Replace("\r", "");
-            }
-            if (toModify.Contains("'"))
-            {
-                toModify = toModify.Replace("'", "");
-            }
-            return toModify;
-        }
+{
+    if (toModify.Contains("\t"))
+    {
+        toModify = toModify.Replace("\t", "");
+    }
+    if (toModify.Contains("\n"))
+    {
+        toModify = toModify.Replace("\n", "");
+    }
+    if (toModify.Contains("\r"))
+    {
+        toModify = toModify.Replace("\r", "");
+    }
+    if (toModify.Contains("'"))
+    {
+        toModify = toModify.Replace("'", "");
+    }
+    return toModify;
+}
     }
 
 }

@@ -2,6 +2,7 @@
 using MaterialSkin.Controls;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -28,8 +29,9 @@ namespace GoogleThesaurus
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //créer la bdd et son interface si elle n'existe pas
-            //DataBaseModel.getInstance(DBNAME).createInterfaceAndStoreData();
+            //désactiver le obuton sauvegarde
+            btnSave.Visible
+                = false;
 
             //créer le nouveau thread
             myThread = new Thread(CronWork);
@@ -139,24 +141,43 @@ namespace GoogleThesaurus
             //ajoute la list à l'affichage
             lstViewK.Items.AddRange(lstViewItem.ToArray());
         }
-
-        private void personnalisélangageCRONToolStripMenuItem_Click(object sender, EventArgs e)
+        private void btnValidateStorage_Click(object sender, EventArgs e)
         {
-
+            if (rdBtnDay.Checked)
+            {
+                btnSave.Visible = false;
+                writeCron("4 11 * * * ");
+            }
+            else if (rdBtnHour.Checked)
+            {
+                btnSave.Visible = false;
+                writeCron("0 * * * * ");
+            }
+            else if (rdBtnManuel.Checked)
+            {
+                btnSave.Visible = true;
+            }
+            else if (rdBtnPerso.Checked)
+            {
+                btnSave.Visible = false;
+            }
         }
 
-        private void manuelToolStripMenuItem_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
-
+            Process.Start("UpdateDataCron.exe");
         }
 
-        private void quotidienToolStripMenuItem_Click(object sender, EventArgs e)
+        private void writeCron(string expression)
         {
+            string[] toWrite = { expression + " UpdateDataCron.exe"};
+            System.IO.File.WriteAllLines(@"cron.tab", toWrite);
 
-        }
+            //créer le nouveau thread
+            myThread = new Thread(CronWork);
+            //démarer le thread
+            myThread.Start();
 
-        private void chaqueHeureToolStripMenuItem_Click(object sender, EventArgs e)
-        {
 
         }
     }

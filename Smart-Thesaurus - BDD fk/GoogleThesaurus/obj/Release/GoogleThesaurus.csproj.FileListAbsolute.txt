@@ -18,3 +18,22 @@ F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus\GoogleThesaurus\obj\Release
 F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus\GoogleThesaurus\obj\Release\GoogleThesaurus.csproj.GenerateResource.Cache
 F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus\GoogleThesaurus\obj\Release\GoogleThesaurus.exe
 F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus\GoogleThesaurus\obj\Release\GoogleThesaurus.pdb
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus - BDD fk\GoogleThesaurus\bin\Release\GoogleThesaurus.exe.config
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus - BDD fk\GoogleThesaurus\obj\Release\GoogleThesaurus.exe
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus - BDD fk\GoogleThesaurus\obj\Release\GoogleThesaurus.pdb
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus - BDD fk\GoogleThesaurus\bin\Release\GoogleThesaurus.exe
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus - BDD fk\GoogleThesaurus\bin\Release\GoogleThesaurus.pdb
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus - BDD fk\GoogleThesaurus\bin\Release\EntityFramework.dll
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus - BDD fk\GoogleThesaurus\bin\Release\EntityFramework.SqlServer.dll
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus - BDD fk\GoogleThesaurus\bin\Release\SpiderLogic.dll
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus - BDD fk\GoogleThesaurus\bin\Release\System.Data.SQLite.dll
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus - BDD fk\GoogleThesaurus\bin\Release\System.Data.SQLite.EF6.dll
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus - BDD fk\GoogleThesaurus\bin\Release\System.Data.SQLite.Linq.dll
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus - BDD fk\GoogleThesaurus\bin\Release\EntityFramework.xml
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus - BDD fk\GoogleThesaurus\bin\Release\EntityFramework.SqlServer.xml
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus - BDD fk\GoogleThesaurus\bin\Release\SpiderLogic.pdb
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus - BDD fk\GoogleThesaurus\bin\Release\System.Data.SQLite.xml
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus - BDD fk\GoogleThesaurus\obj\Release\GoogleThesaurus.csprojResolveAssemblyReference.cache
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus - BDD fk\GoogleThesaurus\obj\Release\GoogleThesaurus.SearchView.resources
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus - BDD fk\GoogleThesaurus\obj\Release\GoogleThesaurus.Properties.Resources.resources
+F:\Cours\GitHub\P_oo\Smart_Thesaurus\Smart-Thesaurus - BDD fk\GoogleThesaurus\obj\Release\GoogleThesaurus.csproj.GenerateResource.Cache
