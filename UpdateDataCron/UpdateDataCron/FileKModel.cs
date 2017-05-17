@@ -74,10 +74,7 @@ namespace UpdateDataCron
                 //stocker l'extention
                 file = reverseString(extention[0]);
                 //si la string est plsu grande que 4 caractère ce n'est pas une extention
-                if (file.Length > 4)
-                {
-                    file = "";
-                }
+
             }
             else
             {

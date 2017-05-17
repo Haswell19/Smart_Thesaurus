@@ -60,7 +60,7 @@ namespace GoogleThesaurus
             if (tableToJoin != "")
             {
                 //executer la recherche dnas toutes les données de la talbe
-                using (SQLiteDataReader reader = DataBaseModel.getInstance("dataK").getData(table, tableToJoin).ExecuteReader())
+                using (SQLiteDataReader reader = DataBaseModel.getInstance("dataK").getWordAndFileFromK().ExecuteReader())
                 {
                     List<string> founded = new List<string>();
                     while (reader.Read())
@@ -135,7 +135,7 @@ namespace GoogleThesaurus
             List<string> contentWord = new List<string>();
 
             //calculer le nombre d'objet qu'il y aura dans la recherche et y mettre la taille max a la progressbar
-            using (SQLiteDataReader reader = DataBaseModel.getInstance("dataK").getData(table,tableToJoin).ExecuteReader())
+            using (SQLiteDataReader reader = DataBaseModel.getInstance("dataK").getWordAndUrl().ExecuteReader())
             {
                 int length = 0;
                 while (reader.Read())
@@ -145,10 +145,11 @@ namespace GoogleThesaurus
                 //modifier la progessbar depuisl e thread princiapl
                 formToModify.Invoke(new maxPB(formToModify.addMaxProgressBar), reader.StepCount);
             };
+
             if (tableToJoin == "")
-            {
-                //recupérer les données
-                using (SQLiteDataReader reader = DataBaseModel.getInstance("dataK").getData(table).ExecuteReader())
+            { 
+            //recupérer les données
+            using (SQLiteDataReader reader = DataBaseModel.getInstance("dataK").getData(table).ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -165,7 +166,9 @@ namespace GoogleThesaurus
             }
             else
             {
-                using (SQLiteDataReader reader = DataBaseModel.getInstance("dataK").getData(table,tableToJoin).ExecuteReader())
+
+
+                using (SQLiteDataReader reader = DataBaseModel.getInstance("dataK").getWordAndUrl().ExecuteReader())
                 {
                     List<string> founded = new List<string>();
                     while (reader.Read())
@@ -174,8 +177,8 @@ namespace GoogleThesaurus
                         formToModify.Invoke(new incrementPB(formToModify.incrementProgressBar));
 
                         //rechercher si le mot est contenu dans l'url ou dans les mots dans la bdd
-                        if (Regex.IsMatch(reader.GetString(1),toSearch)||
-                            Regex.IsMatch(reader.GetString(3),toSearch) && !founded.Contains(reader.GetString(1)))
+                        if ((Regex.IsMatch(reader.GetString(1),toSearch)||
+                            Regex.IsMatch(reader.GetString(3),toSearch)) && !founded.Contains(reader.GetString(1)))
                         {
                             //ajouter a la liste des mots
                             contentWord.Add(reader.GetString(1));

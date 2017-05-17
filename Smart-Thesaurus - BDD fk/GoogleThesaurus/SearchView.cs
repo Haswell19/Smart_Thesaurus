@@ -64,8 +64,8 @@ namespace GoogleThesaurus
             }
             if (etml.Checked)
             {
-                Thread thread = new Thread(() => ShowInfosController.getInstance(this).showWebSearch(progressBar, lstViewK, "t_url","t_wordSite", searchWord.Text));
-                thread.Start();
+                myThread = new Thread(() => ShowInfosController.getInstance(this).showWebSearch(progressBar, lstViewK, "t_url","t_wordSite", searchWord.Text));
+                myThread.Start();
             }
             if (educanet.Checked)
             {
@@ -146,12 +146,12 @@ namespace GoogleThesaurus
             if (rdBtnDay.Checked)
             {
                 btnSave.Visible = false;
-                writeCron("4 11 * * * ");
+                writeCron("0 0 * * *");
             }
             else if (rdBtnHour.Checked)
             {
                 btnSave.Visible = false;
-                writeCron("0 * * * * ");
+                writeCron("0 * * * *");
             }
             else if (rdBtnManuel.Checked)
             {

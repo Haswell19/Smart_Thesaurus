@@ -1,1 +1,1 @@
-4 11 * * *  UpdateDataCron.exe
+35 * * * * UpdateDataCron.exe
