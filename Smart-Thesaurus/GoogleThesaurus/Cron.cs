@@ -30,8 +30,8 @@ namespace GoogleThesaurus
             crontab = new ArrayList();
             processes = new ArrayList();
 
-            try
-            {
+           /* try
+            {*/
                 readCrontab(AppDomain.CurrentDomain.BaseDirectory + "\\cron.tab");
 
                 while (true)
@@ -43,11 +43,11 @@ namespace GoogleThesaurus
                     checkProcesses(now);
                     doCrontab(now);
                 }
-            }
+            /*}
             catch (Exception e)
             {
                 reportError(e.ToString());
-            }
+            }*/
         }
 
         public void checkProcesses(DateTime now)

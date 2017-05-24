@@ -262,7 +262,7 @@
             this.tabSearch.Location = new System.Drawing.Point(4, 22);
             this.tabSearch.Name = "tabSearch";
             this.tabSearch.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSearch.Size = new System.Drawing.Size(710, 553);
+            this.tabSearch.Size = new System.Drawing.Size(695, 377);
             this.tabSearch.TabIndex = 0;
             this.tabSearch.Text = "Recherche";
             // 
@@ -406,7 +406,6 @@
             this.Name = "SearchView";
             this.Sizable = false;
             this.Text = "GoogleThesaurus";
-            this.TopMost = true;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SearchView_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.materialContextMenuStrip1.ResumeLayout(false);

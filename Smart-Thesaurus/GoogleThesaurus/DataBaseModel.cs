@@ -118,6 +118,32 @@ namespace GoogleThesaurus
         }
 
         /// <summary>
+        /// récupérer les données et y joindre la table avec les fk
+        /// </summary>
+        /// <param name="table">nom de la table</param>
+        /// <param name="tableToJoin">la table qui est a joindre à la principale</param>
+        /// <returns>les données reçue</returns>
+        public SQLiteCommand getWordAndFileFromK()
+        {
+            //s'il n'y a pas de connexion la créer
+            if (myConnexion == null)
+                startConneciton();
+            //récuperer les données
+            string sqlRequest = "select * from t_files inner join t_wordK on t_files.fileid = t_wordK.wordToFile";
+            return new SQLiteCommand(sqlRequest, myConnexion);
+        }
+
+        public SQLiteCommand getWordAndUrl()
+        {
+            //s'il n'y a pas de connexion la créer
+            if (myConnexion == null)
+                startConneciton();
+            //récuperer les données
+            string sqlRequest = "select * from t_url inner join t_wordSite on t_url.webid = t_wordSite.wordToURL";
+            return new SQLiteCommand(sqlRequest, myConnexion);
+        }
+
+        /// <summary>
         /// Créer la structure de la bdd
         /// </summary>
         public void createInterfaceAndStoreData()

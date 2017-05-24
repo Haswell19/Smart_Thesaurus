@@ -2,6 +2,7 @@
 using MaterialSkin.Controls;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -28,8 +29,9 @@ namespace GoogleThesaurus
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //créer la bdd et son interface si elle n'existe pas
-            //DataBaseModel.getInstance(DBNAME).createInterfaceAndStoreData();
+            //désactiver le obuton sauvegarde
+            btnSave.Visible
+                = false;
 
             //créer le nouveau thread
             myThread = new Thread(CronWork);
@@ -58,12 +60,12 @@ namespace GoogleThesaurus
             //rechercher ce que l'utilisateur désire dans le K et le site Web
             if (temp.Checked)
             {
-                ShowInfosController.getInstance().showKSearch(progressBar, lstViewK, "t_files", searchWord.Text);
+                ShowInfosController.getInstance().showKSearch(progressBar, lstViewK, "t_files","t_wordK", searchWord.Text);
             }
             if (etml.Checked)
             {
-                Thread thread = new Thread(() => ShowInfosController.getInstance(this).showWebSearch(progressBar, lstViewK, "t_url", searchWord.Text));
-                thread.Start();
+                myThread = new Thread(() => ShowInfosController.getInstance(this).showWebSearch(progressBar, lstViewK, "t_url","t_wordSite", searchWord.Text));
+                myThread.Start();
             }
             if (educanet.Checked)
             {
@@ -139,6 +141,44 @@ namespace GoogleThesaurus
             //ajoute la list à l'affichage
             lstViewK.Items.AddRange(lstViewItem.ToArray());
         }
+        private void btnValidateStorage_Click(object sender, EventArgs e)
+        {
+            if (rdBtnDay.Checked)
+            {
+                btnSave.Visible = false;
+                writeCron("0 0 * * *");
+            }
+            else if (rdBtnHour.Checked)
+            {
+                btnSave.Visible = false;
+                writeCron("0 * * * *");
+            }
+            else if (rdBtnManuel.Checked)
+            {
+                btnSave.Visible = true;
+            }
+            else if (rdBtnPerso.Checked)
+            {
+                btnSave.Visible = false;
+            }
+        }
 
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            Process.Start("UpdateDataCron.exe");
+        }
+
+        private void writeCron(string expression)
+        {
+            string[] toWrite = { expression + " UpdateDataCron.exe"};
+            System.IO.File.WriteAllLines(@"cron.tab", toWrite);
+
+            //créer le nouveau thread
+            myThread = new Thread(CronWork);
+            //démarer le thread
+            myThread.Start();
+
+
+        }
     }
 }
