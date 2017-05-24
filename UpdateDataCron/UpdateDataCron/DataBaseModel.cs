@@ -220,6 +220,7 @@ namespace UpdateDataCron
             //tester si la table existe ou pas
             try
             {
+                //"create table t_wordK (wordid  INTEGER PRIMARY KEY AUTOINCREMENT,word text,wordToFile INTEGER,  FOREIGN KEY(wordToFile) REFERENCES t_files(fileid))"
                 creatInfrastructure("create table t_wordSite (wordid  INTEGER PRIMARY KEY AUTOINCREMENT,word text,wordToURL INTEGER,  FOREIGN KEY(wordToURL) REFERENCES t_url(webid))");
 }
             catch { }
